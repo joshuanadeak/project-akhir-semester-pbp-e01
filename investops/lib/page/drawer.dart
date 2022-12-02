@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:investops/main.dart';
+import 'package:investops/page/suggestionBoxPage.dart';
 
 class UniversalDrawer extends StatefulWidget {
   const UniversalDrawer({super.key});
@@ -22,17 +23,21 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
             ),
           ),
           ListTile(
-            title: Text('Item 1'),
+            title: Text('Home'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const MyApp()),
+              );
             },
           ),
           ListTile(
             title: Text('Suggestion Box'),
             onTap: () {
-              // Update the state of the app.
-              // ...
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SuggestionBoxPage()),
+              );
             },
           ),
         ],
