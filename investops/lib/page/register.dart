@@ -41,7 +41,6 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           title: const Text('Daftar Akun'),
         ),
-        // drawer: const DrawerWidget(),
         backgroundColor: Colors.black,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +52,6 @@ class _RegisterPageState extends State<RegisterPage> {
               key: _formKey,
               child: SingleChildScrollView(
                 child: Container(
-                  // color: Colors.blue,
                   padding: const EdgeInsets.all(15),
                   child: Column(
                     children: [
@@ -64,9 +62,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             fontSize: 14,
                             fontFamily: 'Alexandria-Light'),
                         decoration: const InputDecoration(
-                            // labelText: "Judul",
-                            hintText: 'Username',
-                            border: OutlineInputBorder()),
+                            hintText: 'Username', border: OutlineInputBorder()),
                         onSaved: (String? value) {
                           setState(() {
                             _username = value!;
@@ -128,7 +124,6 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             Container(
-              // color: Colors.blue,
               margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
               height: 45,
               width: double.infinity,
@@ -137,7 +132,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   padding: const EdgeInsets.all(20),
                   backgroundColor: const Color.fromARGB(255, 150, 252, 3),
                   foregroundColor: Colors.black,
-                  // fixedSize: const Size(1000, 40),
                 ),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
@@ -188,8 +182,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                                   255, 150, 252, 3),
                                               fontSize: 12),
                                         ),
-                                        // child: const Text('coba lagi', style: TextStyle(color: Color.fromARGB(
-                                        //           255, 150, 252, 3), fontSize: 15),),
                                       )
                                     ]),
                               ),

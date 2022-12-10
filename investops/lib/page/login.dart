@@ -1,10 +1,7 @@
 import 'package:investops/assets/constants.dart';
 import 'package:investops/main.dart';
-// import 'package:investops/model/stock_market.dart';
-// import 'package:investops/page/mywatchlist.dart';
 import 'package:investops/page/register.dart';
 import 'package:flutter/material.dart';
-// import 'package:investops/util/fetch_stock_market.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -50,7 +47,6 @@ class _LoginPageState extends State<LoginPage> {
             )
           ],
         ),
-        // drawer: const DrawerWidget(),
         backgroundColor: Colors.black,
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +68,6 @@ class _LoginPageState extends State<LoginPage> {
               key: _formKey,
               child: SingleChildScrollView(
                 child: Container(
-                  // color: Colors.blue,
                   padding: const EdgeInsets.all(15),
                   child: Column(
                     children: [
@@ -83,9 +78,7 @@ class _LoginPageState extends State<LoginPage> {
                             fontSize: 14,
                             fontFamily: 'Alexandria-Light'),
                         decoration: const InputDecoration(
-                            // labelText: "Judul",
-                            hintText: 'Username',
-                            border: OutlineInputBorder()),
+                            hintText: 'Username', border: OutlineInputBorder()),
                         onSaved: (String? value) {
                           setState(() {
                             _username = value!;
@@ -147,7 +140,6 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Container(
-              // color: Colors.blue,
               margin: const EdgeInsets.fromLTRB(15, 0, 15, 0),
               height: 45,
               width: double.infinity,
@@ -156,7 +148,6 @@ class _LoginPageState extends State<LoginPage> {
                   padding: const EdgeInsets.all(20),
                   backgroundColor: const Color.fromARGB(255, 150, 252, 3),
                   foregroundColor: Colors.black,
-                  // fixedSize: const Size(1000, 45),
                 ),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
@@ -208,8 +199,6 @@ class _LoginPageState extends State<LoginPage> {
                                                   255, 150, 252, 3),
                                               fontSize: 12),
                                         ),
-                                        // child: const Text('coba lagi', style: TextStyle(color: Color.fromARGB(
-                                        //           255, 150, 252, 3), fontSize: 15),),
                                       )
                                     ]),
                               ),
