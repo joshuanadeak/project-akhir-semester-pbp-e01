@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:investops/main.dart';
+import 'package:investops/page/form.dart';
+import 'package:investops/page/login.dart';
+import 'package:investops/page/mywatchlist.dart';
 import 'package:investops/page/suggestionBoxPage.dart';
 
 class UniversalDrawer extends StatefulWidget {
@@ -11,32 +14,94 @@ class UniversalDrawer extends StatefulWidget {
 
 class _UniversalDrawerState extends State<UniversalDrawer> {
   @override
+  @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            child: Text('Menu'),
-            decoration: BoxDecoration(
-              color: Colors.amber,
-            ),
-          ),
+      backgroundColor: Colors.black,
+      child: Column(
+        children: [
+          Container(height: 90, color: Colors.grey),
           ListTile(
-            title: Text('Home'),
+            title: const Text(
+              'Login',
+              style: TextStyle(color: Colors.white),
+            ),
             onTap: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyApp()),
+                MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
           ),
           ListTile(
-            title: Text('Suggestion Box'),
+            title: const Text(
+              'counter_7',
+              style: TextStyle(color: Colors.white),
+            ),
             onTap: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => SuggestionBoxPage()),
+                MaterialPageRoute(builder: (context) => const MyHomePage()),
+              );
+            },
+          ),
+          ListTile(
+            minLeadingWidth: 10,
+            // leading: const Icon(
+            //   Icons.add_box_outlined,
+            //   color: Colors.white,
+            // ),
+            dense: true,
+            title: const Text(
+              'Suggestion',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const SuggestionBoxPage()),
+              );
+            },
+          ),
+          ListTile(
+            minLeadingWidth: 10,
+            leading: const Icon(
+              Icons.add_box_outlined,
+              color: Colors.white,
+            ),
+            dense: true,
+            title: const Text(
+              'Tambah Budget',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const MyFormPage()),
+              );
+            },
+          ),
+          // ListTile(
+          //   title: const Text(
+          //     'Data Budget',
+          //     style: TextStyle(color: Colors.white),
+          //   ),
+          //   onTap: () {
+          //     Navigator.pushReplacement(
+          //       context,
+          //       MaterialPageRoute(builder: (context) => const MyDataPage()),
+          //     );
+          //   },
+          // ),
+          ListTile(
+            title: const Text(
+              'My Watch List',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const MyWatchList()),
               );
             },
           ),
