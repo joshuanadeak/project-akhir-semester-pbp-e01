@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:investops/data/fetchSuggestion.dart';
 import 'package:investops/model/suggestionBox.dart';
 import 'package:investops/page/drawer.dart';
-
+import 'package:investops/form/suggestionForm.dart';
+import 'package:investops/form/replyForm.dart';
 
 class SuggestionBoxPage extends StatefulWidget {
   const SuggestionBoxPage({super.key});
@@ -38,8 +39,18 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
-                      title: Text(snapshot.data![index].fields.feedback),
-                      subtitle: Text(snapshot.data![index].fields.reply),
+                      title: Text(snapshot.data![index].fields.feedback,
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 15,
+                          color: Colors.green,
+                        ),),
+                      subtitle: Text(snapshot.data![index].fields.reply,
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 7,
+                          color: Colors.green,
+                        ),),
                       trailing: Text("From user : "+snapshot.data![index].fields.username),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
@@ -47,7 +58,12 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
                           color: Colors.green,
                           width: 2,
                         ),
-                      ), 
+                      ),
+                      onTap: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(builder: (context) => ReplyForm()),);
+                      }, 
                     ),
                   );
                 },
@@ -57,6 +73,23 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
             }
             return const CircularProgressIndicator();
           },
+        ),
+      ),
+      floatingActionButton: Container(
+        padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => SuggestionForm()),);
+              },
+              child: const Icon(Icons.add),
+              backgroundColor: Colors.green,
+            ),
+          ],
         ),
       ),
     );
