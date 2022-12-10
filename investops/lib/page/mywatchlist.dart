@@ -41,11 +41,17 @@ class MyWatchlist extends State<MyWatchList> {
             IconButton(
                 tooltip: 'Portofolio',
                 onPressed: (() {
-                  if (request.loggedIn)
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => const MyPorto()),
-                    );
+                  (request.loggedIn)
+                      ? Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MyPorto()),
+                        )
+                      : Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()),
+                        );
                 }),
                 icon: const Icon(Icons.description_outlined))
           ],
@@ -98,7 +104,7 @@ class MyWatchlist extends State<MyWatchList> {
                   child: InkWell(
                     onTap: () {
                       if (!request.loggedIn) {
-                        Navigator.pushReplacement(
+                        Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const LoginPage()),
@@ -256,7 +262,7 @@ class MyWatchlist extends State<MyWatchList> {
                       itemCount: snapshot.data!.length,
                       itemBuilder: (_, index) => InkWell(
                         onTap: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => MarketDetail(

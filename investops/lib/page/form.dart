@@ -168,7 +168,6 @@ class _MyFormPageState extends State<MyFormPage> {
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(20),
                   backgroundColor: const Color.fromARGB(255, 150, 252, 3),
                   foregroundColor: Colors.black,
                 ),
@@ -191,7 +190,7 @@ class _MyFormPageState extends State<MyFormPage> {
                   }
                 },
                 child: const Text(
-                  "Masukan Saham ke Watchlist",
+                  "Tambahkan Saham",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
