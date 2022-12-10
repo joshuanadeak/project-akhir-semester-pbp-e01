@@ -1,7 +1,5 @@
 import 'package:investops/assets/constants.dart';
-import 'package:investops/page/drawer.dart';
 import 'package:investops/page/myporto.dart';
-import 'package:investops/page/mywatchlist.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -33,14 +31,12 @@ class PortoDetail extends StatelessWidget {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyWatchList()),
+                MaterialPageRoute(builder: (context) => const MyPorto()),
               );
             },
           ),
           title: const Text('Detail Portofolio'),
         ),
-        // drawer: const DrawerWidget(),
-
         body: Column(
           children: [
             Expanded(
@@ -76,14 +72,12 @@ class PortoDetail extends StatelessWidget {
                     ),
                   ),
                   Container(
-                      // color: Colors.pink,
                       padding: const EdgeInsets.all(15),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
                         child: InkWell(
                           onTap: () => {},
                           child: Container(
-                            // color: Color.fromARGB(255, 21, 21, 21)
                             height: 60,
                             width: double.infinity,
                             color: const Color.fromARGB(255, 35, 35, 35),
@@ -209,9 +203,7 @@ class PortoDetail extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              // flex: 2,
               child: Container(
-                // color: Colors.blue,
                 margin: const EdgeInsets.all(15),
                 height: 35,
                 width: double.infinity,
@@ -220,7 +212,6 @@ class PortoDetail extends StatelessWidget {
                     padding: const EdgeInsets.all(8),
                     backgroundColor: const Color.fromARGB(255, 150, 252, 3),
                     foregroundColor: Colors.black,
-                    // fixedSize: const Size(1000, 45),
                   ),
                   onPressed: () async {
                     final response = await request
@@ -254,7 +245,7 @@ class PortoDetail extends StatelessWidget {
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const MyWatchList()),
+                                                  const MyPorto()),
                                         );
                                       },
                                       child: const Text(
@@ -264,8 +255,6 @@ class PortoDetail extends StatelessWidget {
                                                 255, 150, 252, 3),
                                             fontSize: 12),
                                       ),
-                                      // child: const Text('coba lagi', style: TextStyle(color: Color.fromARGB(
-                                      //           255, 150, 252, 3), fontSize: 15),),
                                     )
                                   ]),
                             ),

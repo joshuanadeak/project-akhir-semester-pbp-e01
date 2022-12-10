@@ -1,5 +1,5 @@
 import 'package:investops/assets/constants.dart';
-import 'package:investops/page/drawer.dart';
+import 'package:investops/page/login.dart';
 import 'package:investops/page/mywatchlist.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -38,8 +38,6 @@ class MarketDetail extends StatelessWidget {
           ),
           title: const Text('Detail Watchlist'),
         ),
-        // drawer: const DrawerWidget(),
-
         body: Column(
           children: [
             Expanded(
@@ -75,14 +73,12 @@ class MarketDetail extends StatelessWidget {
                     ),
                   ),
                   Container(
-                      // color: Colors.pink,
                       padding: const EdgeInsets.all(15),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(5),
                         child: InkWell(
                           onTap: () => {},
                           child: Container(
-                            // color: Color.fromARGB(255, 21, 21, 21)
                             height: 60,
                             width: double.infinity,
                             color: const Color.fromARGB(255, 35, 35, 35),
@@ -219,58 +215,62 @@ class MarketDetail extends StatelessWidget {
                     padding: const EdgeInsets.all(8),
                     backgroundColor: const Color.fromARGB(255, 150, 252, 3),
                     foregroundColor: Colors.black,
-                    // fixedSize: const Size(1000, 45),
                   ),
                   onPressed: () async {
-                    final response = await request
-                        .post("${siteUrl}/stock/delete_market/${pk}", {});
-                    print("CEKKKKKKKKKKKKK");
-                    showDialog(
-                        context: context,
-                        builder: (context) {
-                          return Dialog(
-                            backgroundColor:
-                                const Color.fromARGB(255, 21, 21, 21),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            elevation: 10,
-                            child: Container(
-                              child: ListView(
-                                  padding: const EdgeInsets.only(
-                                      top: 20, bottom: 20),
-                                  shrinkWrap: true,
-                                  children: <Widget>[
-                                    const Center(
-                                        child: Text(
-                                      'Pembelian Berhasil',
-                                      style: TextStyle(
-                                          fontSize: 15, color: Colors.white),
-                                    )),
-                                    const SizedBox(height: 20),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const MyWatchList()),
-                                        );
-                                      },
-                                      child: const Text(
-                                        'Kembali ke Watchlist',
+                    if (!request.loggedIn) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()),
+                      );
+                    } else {
+                      final response = await request
+                          .post("${siteUrl}/stock/delete_market/${pk}", {});
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return Dialog(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 21, 21, 21),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              elevation: 10,
+                              child: Container(
+                                child: ListView(
+                                    padding: const EdgeInsets.only(
+                                        top: 20, bottom: 20),
+                                    shrinkWrap: true,
+                                    children: <Widget>[
+                                      const Center(
+                                          child: Text(
+                                        'Pembelian Berhasil',
                                         style: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 150, 252, 3),
-                                            fontSize: 12),
-                                      ),
-                                      // child: const Text('coba lagi', style: TextStyle(color: Color.fromARGB(
-                                      //           255, 150, 252, 3), fontSize: 15),),
-                                    )
-                                  ]),
-                            ),
-                          );
-                        });
+                                            fontSize: 15, color: Colors.white),
+                                      )),
+                                      const SizedBox(height: 20),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const MyWatchList()),
+                                          );
+                                        },
+                                        child: const Text(
+                                          'Kembali ke Watchlist',
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 150, 252, 3),
+                                              fontSize: 12),
+                                        ),
+                                      )
+                                    ]),
+                              ),
+                            );
+                          });
+                    }
                   },
                   child: const Text(
                     "Beli Saham",

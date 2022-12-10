@@ -1,9 +1,7 @@
 import 'package:investops/assets/constants.dart';
-import 'package:investops/model/stock_market.dart';
 import 'package:investops/page/mywatchlist.dart';
 import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
-// import 'package:investops/util/fetch_stock_market.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +14,6 @@ class MyFormPage extends StatefulWidget {
 
 class _MyFormPageState extends State<MyFormPage> {
   final _formKey = GlobalKey<FormState>();
-  // final Future<List<StockMarket>> futureFetch = getStockMarket();
 
   String kodeSaham = "";
   String namaPerusahaan = "";
@@ -38,12 +35,7 @@ class _MyFormPageState extends State<MyFormPage> {
               );
             },
           ),
-          // title: const Text('Form Budget'),
           title: const Text('Tambah Saham'),
-          // actions: [
-          //   IconButton(
-          //       onPressed: (() {}), icon: Icon(Icons.description_outlined))
-          // ],
         ),
         drawer: const UniversalDrawer(),
         backgroundColor: Colors.black,
@@ -64,7 +56,6 @@ class _MyFormPageState extends State<MyFormPage> {
                             fontSize: 14,
                             fontFamily: 'Alexandria-Light'),
                         decoration: const InputDecoration(
-                            // labelText: "Judul",
                             hintText: 'Kode Saham',
                             border: OutlineInputBorder()),
                         onSaved: (String? value) {
@@ -92,7 +83,6 @@ class _MyFormPageState extends State<MyFormPage> {
                             fontSize: 14,
                             fontFamily: 'Alexandria-Light'),
                         decoration: const InputDecoration(
-                            // labelText: "Judul",
                             hintText: 'Nama Perusahaan',
                             border: OutlineInputBorder()),
                         onSaved: (String? value) {
@@ -120,7 +110,6 @@ class _MyFormPageState extends State<MyFormPage> {
                             fontSize: 14,
                             fontFamily: 'Alexandria-Light'),
                         decoration: const InputDecoration(
-                            // labelText: "Judul",
                             hintText: 'Harga Saham',
                             border: OutlineInputBorder()),
                         onSaved: (String? value) {
@@ -150,9 +139,7 @@ class _MyFormPageState extends State<MyFormPage> {
                             fontSize: 14,
                             fontFamily: 'Alexandria-Light'),
                         decoration: const InputDecoration(
-                            // labelText: "Judul",
-                            hintText: 'Risk',
-                            border: OutlineInputBorder()),
+                            hintText: 'Risk', border: OutlineInputBorder()),
                         onSaved: (String? value) {
                           setState(() {
                             risk = value!;
@@ -176,7 +163,6 @@ class _MyFormPageState extends State<MyFormPage> {
               ),
             ),
             Container(
-              // color: Colors.blue,
               margin: const EdgeInsets.fromLTRB(15, 30, 15, 15),
               height: 45,
               width: double.infinity,
@@ -185,15 +171,9 @@ class _MyFormPageState extends State<MyFormPage> {
                   padding: const EdgeInsets.all(20),
                   backgroundColor: const Color.fromARGB(255, 150, 252, 3),
                   foregroundColor: Colors.black,
-                  // fixedSize: const Size(1000, 45),
                 ),
                 onPressed: () async {
-                  // print(kodeSaham);
-                  // print(namaPerusahaan);
-                  // print(hargaSaham);
-                  // print(risk);
                   if (_formKey.currentState!.validate()) {
-                    // print("masukkkkk");
                     final response =
                         await request.post("${siteUrl}/stock/add/", {
                       'kode_saham': kodeSaham,
@@ -208,32 +188,6 @@ class _MyFormPageState extends State<MyFormPage> {
                       MaterialPageRoute(
                           builder: (context) => const MyWatchList()),
                     );
-                    // showDialog(
-                    //     context: context,
-                    //     builder: (context) {
-                    //       return Dialog(
-                    //           shape: RoundedRectangleBorder(
-                    //             borderRadius: BorderRadius.circular(10),
-                    //           ),
-                    //           elevation: 15,
-                    //           child: ListView(
-                    //             padding: const EdgeInsets.only(
-                    //                 top: 20, bottom: 20),
-                    //             shrinkWrap: true,
-                    //             children: [
-                    //               const Center(
-                    //                   child: Text('Data telah dimasukkan')),
-                    //               const SizedBox(
-                    //                 height: 5,
-                    //               ),
-                    //               TextButton(
-                    //                   onPressed: () {
-                    //                     Navigator.pop(context);
-                    //                   },
-                    //                   child: const Text('Kembali'))
-                    //             ],
-                    //           ));
-                    //     });
                   }
                 },
                 child: const Text(

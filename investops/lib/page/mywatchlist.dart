@@ -6,7 +6,6 @@ import 'package:investops/page/market_detail.dart';
 import 'package:investops/page/myporto.dart';
 import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
-// import 'package:investops/util/fetch_stock_market.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -18,22 +17,13 @@ class MyWatchList extends StatefulWidget {
 }
 
 class MyWatchlist extends State<MyWatchList> {
-  // final Future<List<StockMarket>> futureFetch = getStockMarket();
-  String judul = "";
-  int nominal = 0;
-  String? jenis;
-  List<String> listJenis = ['Pemasukan', 'Pengeluaran'];
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
+
     Future<List<StockMarket>> getStockMarket() async {
       var url = '${siteUrl}/stock/mjson/';
       var response = await request.get(url);
-      // print(response);
-      // melakukan decode response menjadi bentuk json
-      // var data = jsonDecode(utf8.decode(response.bodyBytes));
-
-      // melakukan konversi data json menjadi object WatchList
       List<StockMarket> listStockMarket = [];
       for (var d in response) {
         if (d != null) {
@@ -46,15 +36,16 @@ class MyWatchlist extends State<MyWatchList> {
 
     return Scaffold(
         appBar: AppBar(
-          // title: const Text('Form Budget'),
           title: const Text('Watchlist Saham'),
           actions: [
             IconButton(
+                tooltip: 'Portofolio',
                 onPressed: (() {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyPorto()),
-                  );
+                  if (request.loggedIn)
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const MyPorto()),
+                    );
                 }),
                 icon: const Icon(Icons.description_outlined))
           ],
@@ -82,17 +73,12 @@ class MyWatchlist extends State<MyWatchList> {
                               style: TextStyle(fontWeight: FontWeight.bold)),
                           TextSpan(text: " Investops"),
                         ]),
-                    // "Analisis Watchlist Ternak Uang",
-                    // style: TextStyle(color: Colors.black),
                   ),
                 ],
               ),
             ),
             Container(
               padding: const EdgeInsets.all(15),
-              // height: 40,
-              // width: 500,
-              // color: Colors.amber,
               child: const Text(
                 "Watchlist merupakan analisis intrinsik value terhadap emiten pilihan yang dilakukan oleh Tim Analis Investops. Analisis di bawah bukan merupakan rekomendasi, nasihat serta ajakan untuk membeli ataupun menjual.",
                 style: TextStyle(
@@ -106,14 +92,20 @@ class MyWatchlist extends State<MyWatchList> {
               ),
             ),
             Container(
-                // color: Colors.pink,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: InkWell(
-                    onTap: () => {},
+                    onTap: () {
+                      if (!request.loggedIn) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()),
+                        );
+                      }
+                    },
                     child: Container(
-                      // color: Color.fromARGB(255, 21, 21, 21)
                       height: 60,
                       width: double.infinity,
                       color: const Color.fromARGB(255, 21, 21, 21),
@@ -129,9 +121,7 @@ class MyWatchlist extends State<MyWatchList> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
-                                padding:
-                                    // const EdgeInsets.fromLTRB(10, 10, 10, 2),
-                                    const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                                 child: Row(
                                   children: const [
                                     Text(
@@ -142,9 +132,7 @@ class MyWatchlist extends State<MyWatchList> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    // const EdgeInsets.fromLTRB(10, 0, 10, 2),
-                                    const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                                 child: Row(
                                   children: const [
                                     Text("Watchlist Investops",
@@ -169,7 +157,6 @@ class MyWatchlist extends State<MyWatchList> {
                 )),
             Container(
               padding: const EdgeInsets.fromLTRB(15, 25, 15, 15),
-              // color: Colors.blue,
               height: 60,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -214,7 +201,6 @@ class MyWatchlist extends State<MyWatchList> {
                     Flexible(
                       flex: 6,
                       child: Container(
-                        // color: Colors.blue,
                         padding: const EdgeInsets.only(left: 15),
                         child: const Align(
                           alignment: Alignment.centerLeft,
@@ -244,7 +230,6 @@ class MyWatchlist extends State<MyWatchList> {
                     Flexible(
                       flex: 2,
                       child: Container(
-                        // color: Colors.blue,
                         padding: const EdgeInsets.only(right: 15),
                         child: const Align(
                           alignment: Alignment.centerRight,
@@ -261,9 +246,6 @@ class MyWatchlist extends State<MyWatchList> {
                   ],
                 )),
             Expanded(
-              // color: Colors.amber,
-              // height: 200,
-              // width: double.infinity,
               child: FutureBuilder<List<StockMarket>>(
                 future: getStockMarket(),
                 builder: (context, AsyncSnapshot<List<StockMarket>> snapshot) {
@@ -289,7 +271,6 @@ class MyWatchlist extends State<MyWatchList> {
                                       )));
                         },
                         child: SizedBox(
-                            // color: Colors.purple,
                             height: 60,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -334,14 +315,12 @@ class MyWatchlist extends State<MyWatchList> {
                                 Flexible(
                                   flex: 2,
                                   child: Container(
-                                    // color: Colors.blue,
                                     padding: const EdgeInsets.only(right: 15),
                                     child: Align(
                                       alignment: Alignment.centerRight,
                                       child: Text(
                                         snapshot.data![index].risk,
                                         style: TextStyle(
-                                            // color: Color.fromARGB(255, 150, 252, 3),
                                             color:
                                                 (snapshot.data![index].risk ==
                                                         "LOW")

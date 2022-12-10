@@ -1,12 +1,10 @@
 import 'package:investops/assets/constants.dart';
 import 'package:investops/model/stock_market.dart';
-import 'package:investops/page/form.dart';
 import 'package:investops/page/login.dart';
-import 'package:investops/page/market_detail.dart';
+import 'package:investops/page/mywatchlist.dart';
 import 'package:investops/page/porto_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
-// import 'package:investops/util/fetch_stock_market.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -18,18 +16,12 @@ class MyPorto extends StatefulWidget {
 }
 
 class Myporto extends State<MyPorto> {
-  // final Future<List<StockMarket>> futureFetch = getStockPorto();
-  String judul = "";
-  int nominal = 0;
-  String? jenis;
-  List<String> listJenis = ['Pemasukan', 'Pengeluaran'];
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     Future<List<StockMarket>> getStockPorto() async {
       var url = '${siteUrl}/stock/json/';
       var response = await request.get(url);
-      // print(response);
       List<StockMarket> listStockPorto = [];
       for (var d in response) {
         if (d != null) {
@@ -42,12 +34,28 @@ class Myporto extends State<MyPorto> {
 
     return Scaffold(
         appBar: AppBar(
-          // title: const Text('Form Budget'),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_rounded),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const MyWatchList()),
+              );
+            },
+          ),
           title: const Text('Portofolio'),
           actions: [
             IconButton(
-                onPressed: (() {}),
-                icon: const Icon(Icons.description_outlined))
+                tooltip: 'Watchlist',
+                onPressed: (() {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const MyWatchList()),
+                  );
+                }),
+                icon: const Icon(Icons.insert_chart_outlined_rounded))
           ],
         ),
         drawer: const UniversalDrawer(),
@@ -73,19 +81,14 @@ class Myporto extends State<MyPorto> {
                               style: TextStyle(fontWeight: FontWeight.bold)),
                           const TextSpan(text: " Investops"),
                         ]),
-                    // "Analisis Watchlist Ternak Uang",
-                    // style: TextStyle(color: Colors.black),
                   ),
                 ],
               ),
             ),
             Container(
               padding: const EdgeInsets.all(15),
-              // height: 40,
-              // width: 500,
-              // color: Colors.amber,
               child: const Text(
-                "Portofolio merupakan analisis intrinsik value terhadap emiten pilihan yang dilakukan oleh Tim Analis Investops. Analisis di bawah bukan merupakan rekomendasi, nasihat serta ajakan untuk membeli ataupun menjual.",
+                "Portofolio menampilkan investasi saham yang dimiliki oleh pengguna. Pengguna dapat menjual kepemilikan sahamnya.",
                 style: TextStyle(
                     color: Colors.white,
                     height: 1.5,
@@ -97,14 +100,12 @@ class Myporto extends State<MyPorto> {
               ),
             ),
             Container(
-                // color: Colors.pink,
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: InkWell(
                     onTap: () => {},
                     child: Container(
-                      // color: Color.fromARGB(255, 21, 21, 21)
                       height: 60,
                       width: double.infinity,
                       color: const Color.fromARGB(255, 21, 21, 21),
@@ -120,9 +121,7 @@ class Myporto extends State<MyPorto> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Padding(
-                                padding:
-                                    // const EdgeInsets.fromLTRB(10, 10, 10, 2),
-                                    const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                                 child: Row(
                                   children: const [
                                     Text(
@@ -133,9 +132,7 @@ class Myporto extends State<MyPorto> {
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    // const EdgeInsets.fromLTRB(10, 0, 10, 2),
-                                    const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
                                 child: Row(
                                   children: const [
                                     Text("Watchlist Investops",
@@ -160,7 +157,6 @@ class Myporto extends State<MyPorto> {
                 )),
             Container(
               padding: const EdgeInsets.fromLTRB(15, 25, 15, 15),
-              // color: Colors.blue,
               height: 60,
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -197,7 +193,6 @@ class Myporto extends State<MyPorto> {
                     Flexible(
                       flex: 6,
                       child: Container(
-                        // color: Colors.blue,
                         padding: const EdgeInsets.only(left: 15),
                         child: const Align(
                           alignment: Alignment.centerLeft,
@@ -227,7 +222,6 @@ class Myporto extends State<MyPorto> {
                     Flexible(
                       flex: 2,
                       child: Container(
-                        // color: Colors.blue,
                         padding: const EdgeInsets.only(right: 15),
                         child: const Align(
                           alignment: Alignment.centerRight,
@@ -244,9 +238,6 @@ class Myporto extends State<MyPorto> {
                   ],
                 )),
             Expanded(
-              // color: Colors.amber,
-              // height: 200,
-              // width: double.infinity,
               child: FutureBuilder<List<StockMarket>>(
                 future: getStockPorto(),
                 builder: (context, AsyncSnapshot<List<StockMarket>> snapshot) {
@@ -272,7 +263,6 @@ class Myporto extends State<MyPorto> {
                                       )));
                         },
                         child: SizedBox(
-                            // color: Colors.purple,
                             height: 60,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -317,14 +307,12 @@ class Myporto extends State<MyPorto> {
                                 Flexible(
                                   flex: 2,
                                   child: Container(
-                                    // color: Colors.blue,
                                     padding: const EdgeInsets.only(right: 15),
                                     child: Align(
                                       alignment: Alignment.centerRight,
                                       child: Text(
                                         snapshot.data![index].risk,
                                         style: TextStyle(
-                                            // color: Color.fromARGB(255, 150, 252, 3),
                                             color:
                                                 (snapshot.data![index].risk ==
                                                         "LOW")

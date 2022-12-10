@@ -43,8 +43,8 @@ class MyApp extends StatelessWidget {
                 bodyText1: TextStyle(),
                 bodyText2: TextStyle(),
               ).apply(
-                bodyColor: Colors.lime,
-                displayColor: Colors.lime,
+                bodyColor: const Color.fromARGB(255, 150, 252, 3),
+                displayColor: const Color.fromARGB(255, 150, 252, 3),
               ),
               fontFamily: 'Alexandria',
               appBarTheme: const AppBarTheme(
