@@ -24,7 +24,7 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
       child: Column(
         children: [
           Container(
-            height: 96,
+            height: 130,
             color: const Color.fromARGB(255, 21, 21, 21),
             child: Center(
               child: ListTile(
@@ -61,6 +61,20 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
                 );
               },
             ),
+            ListTile(
+            minLeadingWidth: 10,
+            leading: const Icon(Icons.home_rounded, color: Colors.white),
+            title: const Text(
+              'Home',
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const MyHomePage()),
+              );
+            },
+          ),
           ListTile(
             minLeadingWidth: 10,
             leading: const Icon(Icons.insert_chart_outlined_rounded,

@@ -129,7 +129,7 @@ class _RegisterPageState extends State<RegisterPage> {
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.all(20),
+                  // padding: const EdgeInsets.all(8),
                   backgroundColor: const Color.fromARGB(255, 150, 252, 3),
                   foregroundColor: Colors.black,
                 ),
