@@ -127,7 +127,7 @@ class Myporto extends State<MyPorto> {
                                     Text(
                                         "Jadi Member Untuk Cek Dampak IHSG Terhadap",
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 13))
+                                            color: Colors.white, fontSize: 12))
                                   ],
                                 ),
                               ),
@@ -137,7 +137,7 @@ class Myporto extends State<MyPorto> {
                                   children: const [
                                     Text("Watchlist Investops",
                                         style: TextStyle(
-                                            fontSize: 13,
+                                            fontSize: 12,
                                             color: Color.fromARGB(
                                                 255, 150, 252, 3)))
                                   ],
