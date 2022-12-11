@@ -1,9 +1,9 @@
 import 'package:investops/assets/constants.dart';
 import 'package:investops/model/stock_market.dart';
-import 'package:investops/page/form.dart';
+import 'package:investops/page/stock/form.dart';
 import 'package:investops/page/login.dart';
-import 'package:investops/page/market_detail.dart';
-import 'package:investops/page/myporto.dart';
+import 'package:investops/page/stock/market_detail.dart';
+import 'package:investops/page/stock/myporto.dart';
 import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';

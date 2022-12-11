@@ -1,22 +1,21 @@
 import 'package:investops/assets/constants.dart';
-import 'package:investops/page/login.dart';
-import 'package:investops/page/mywatchlist.dart';
+import 'package:investops/page/crypto/crypto_porto.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
-class MarketDetail extends StatelessWidget {
-  final kodeSaham;
-  final namaPerusahaan;
-  final hargaSaham;
+class CryptoPortoDetail extends StatelessWidget {
+  final kodeCrypto;
+  final namaCrypto;
+  final hargaCrypto;
   final risk;
   final pk;
 
-  const MarketDetail({
+  const CryptoPortoDetail({
     Key? key,
-    required this.kodeSaham,
-    required this.namaPerusahaan,
-    required this.hargaSaham,
+    required this.kodeCrypto,
+    required this.namaCrypto,
+    required this.hargaCrypto,
     required this.risk,
     required this.pk,
   }) : super(key: key);
@@ -32,11 +31,11 @@ class MarketDetail extends StatelessWidget {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyWatchList()),
+                MaterialPageRoute(builder: (context) => const CryptoPorto()),
               );
             },
           ),
-          title: const Text('Detail Watchlist'),
+          title: const Text('Detail Portofolio'),
         ),
         body: Column(
           children: [
@@ -54,17 +53,17 @@ class MarketDetail extends StatelessWidget {
                         leading: CircleAvatar(
                           backgroundColor: Colors.white,
                           backgroundImage: NetworkImage(
-                              "https://www.idx.co.id/Portals/0/StaticData/ListedCompanies/LogoEmiten/${kodeSaham}.jpg"),
+                              "https://images.reku.id/accounts/${kodeCrypto.toLowerCase()}.png"),
                         ),
                         title: Text(
-                          kodeSaham,
+                          kodeCrypto,
                           style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.bold),
                         ),
                         subtitle: Text(
-                          namaPerusahaan,
+                          namaCrypto,
                           style: const TextStyle(
                               color: Color.fromARGB(255, 172, 171, 171),
                               fontSize: 12),
@@ -102,7 +101,7 @@ class MarketDetail extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            '${hargaSaham}',
+                                            '${hargaCrypto}',
                                             style: const TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 14),
@@ -128,7 +127,7 @@ class MarketDetail extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            '${hargaSaham + 275}',
+                                            '${hargaCrypto + 275}',
                                             style: const TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 14),
@@ -159,8 +158,7 @@ class MarketDetail extends StatelessWidget {
                                                       color: Color.fromARGB(
                                                           255, 150, 252, 3),
                                                       fontSize: 14))
-                                              : Text(
-                                                  '${risk}',
+                                              : Text('${risk}',
                                                   style: const TextStyle(
                                                       color: Colors.red,
                                                       fontSize: 14),
@@ -191,7 +189,7 @@ class MarketDetail extends StatelessWidget {
                               fontFamily: 'Alexandria')),
                       TextSpan(
                           text:
-                              ", keputusan investasi ditanggung oleh masing masing pengguna. Investops tidak bertanggung jawab untuk segala keputusan investasi individual.",
+                              ", keputusan investasi ditanggung oleh masing-masing pengguna. Investops tidak bertanggung jawab untuk segala keputusan investasi individual.",
                           style: TextStyle(
                               color: Colors.white,
                               height: 1.5,
@@ -204,9 +202,7 @@ class MarketDetail extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              // flex: 2,
               child: Container(
-                // color: Colors.blue,
                 margin: const EdgeInsets.all(15),
                 height: 35,
                 width: double.infinity,
@@ -217,63 +213,55 @@ class MarketDetail extends StatelessWidget {
                     foregroundColor: Colors.black,
                   ),
                   onPressed: () async {
-                    if (!request.loggedIn) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage()),
-                      );
-                    } else {
-                      final response = await request
-                          .post("${siteUrl}/stock/delete_market/${pk}", {});
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return Dialog(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 21, 21, 21),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              elevation: 10,
-                              child: Container(
-                                child: ListView(
-                                    padding: const EdgeInsets.only(
-                                        top: 20, bottom: 20),
-                                    shrinkWrap: true,
-                                    children: <Widget>[
-                                      const Center(
-                                          child: Text(
-                                        'Pembelian Berhasil',
+                    final response = await request
+                        .post("${siteUrl}/crypto/delete_crypto/${pk}", {});
+                    showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            backgroundColor:
+                                const Color.fromARGB(255, 21, 21, 21),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 10,
+                            child: Container(
+                              child: ListView(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, bottom: 20),
+                                  shrinkWrap: true,
+                                  children: <Widget>[
+                                    const Center(
+                                        child: Text(
+                                      'Penjualan Berhasil',
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.white),
+                                    )),
+                                    const SizedBox(height: 20),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const CryptoPorto()),
+                                        );
+                                      },
+                                      child: const Text(
+                                        'Kembali ke Portofolio',
                                         style: TextStyle(
-                                            fontSize: 15, color: Colors.white),
-                                      )),
-                                      const SizedBox(height: 20),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const MyWatchList()),
-                                          );
-                                        },
-                                        child: const Text(
-                                          'Kembali ke Watchlist',
-                                          style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 150, 252, 3),
-                                              fontSize: 12),
-                                        ),
-                                      )
-                                    ]),
-                              ),
-                            );
-                          });
-                    }
+                                            color: Color.fromARGB(
+                                                255, 150, 252, 3),
+                                            fontSize: 12),
+                                      ),
+                                    )
+                                  ]),
+                            ),
+                          );
+                        });
                   },
                   child: const Text(
-                    "Beli Saham",
+                    "Jual Crypto",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
