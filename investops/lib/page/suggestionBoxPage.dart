@@ -4,6 +4,9 @@ import 'package:investops/model/suggestionBox.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:investops/form/suggestionForm.dart';
 import 'package:investops/form/replyForm.dart';
+import 'package:investops/page/login.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class SuggestionBoxPage extends StatefulWidget {
   const SuggestionBoxPage({super.key});
@@ -23,11 +26,12 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Suggestion Box'),
+        title: const Text('Suggestion Box'),
       ),
-      drawer: UniversalDrawer(),
+      drawer: const UniversalDrawer(),
       body: Center(
         child: FutureBuilder<List<FeedbackUser>>(
           future: _futureFeedback,
@@ -40,13 +44,13 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
                       title: Text(snapshot.data![index].fields.feedback,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: 15,
                           color: Colors.green,
                         ),),
                       subtitle: Text(snapshot.data![index].fields.reply,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: 7,
                           color: Colors.green,
@@ -54,15 +58,21 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
                       trailing: Text("From user : "+snapshot.data![index].fields.username),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
-                        side: BorderSide(
+                        side: const BorderSide(
                           color: Colors.green,
                           width: 2,
                         ),
                       ),
                       onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => ReplyForm()),);
+                        if (!request.loggedIn) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const LoginPage()),);
+                        } else {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const ReplyForm()),);
+                        }
                       }, 
                     ),
                   );
@@ -84,7 +94,7 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => SuggestionForm()),);
+                  MaterialPageRoute(builder: (context) => const SuggestionForm()),);
               },
               child: const Icon(Icons.add),
               backgroundColor: Colors.green,
