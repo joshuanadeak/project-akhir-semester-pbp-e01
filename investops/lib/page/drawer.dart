@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:investops/assets/constants.dart';
 import 'package:investops/main.dart';
 import 'package:investops/page/login.dart';
-import 'package:investops/page/mywatchlist.dart';
+import 'package:investops/page/stock/mywatchlist.dart';
+import 'package:investops/page/crypto/crypto_watchlist.dart';
 import 'package:investops/page/suggestionBoxPage.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
@@ -101,7 +102,7 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()),
+                MaterialPageRoute(builder: (context) => const MyCryptoWatchList()),
               );
             },
           ),

@@ -1,23 +1,23 @@
 import 'package:investops/assets/constants.dart';
-import 'package:investops/page/mywatchlist.dart';
+import 'package:investops/page/crypto/crypto_watchlist.dart';
 import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
-class MyFormPage extends StatefulWidget {
-  const MyFormPage({Key? key}) : super(key: key);
+class MyCryptoFormPage extends StatefulWidget {
+  const MyCryptoFormPage({Key? key}) : super(key: key);
 
   @override
-  State<MyFormPage> createState() => _MyFormPageState();
+  State<MyCryptoFormPage> createState() => _MyCryptoFormPageState();
 }
 
-class _MyFormPageState extends State<MyFormPage> {
+class _MyCryptoFormPageState extends State<MyCryptoFormPage> {
   final _formKey = GlobalKey<FormState>();
 
-  String kodeSaham = "";
-  String namaPerusahaan = "";
-  int hargaSaham = 0;
+  String kodeCrypto = "";
+  String namaCrypto = "";
+  int hargaCrypto = 0;
   String risk = "";
 
   @override
@@ -31,11 +31,11 @@ class _MyFormPageState extends State<MyFormPage> {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyWatchList()),
+                MaterialPageRoute(builder: (context) => const MyCryptoWatchList()),
               );
             },
           ),
-          title: const Text('Tambah Saham'),
+          title: const Text('Tambah Crypto'),
         ),
         drawer: const UniversalDrawer(),
         backgroundColor: Colors.black,
@@ -56,21 +56,21 @@ class _MyFormPageState extends State<MyFormPage> {
                             fontSize: 14,
                             fontFamily: 'Alexandria-Light'),
                         decoration: const InputDecoration(
-                            hintText: 'Kode Saham',
+                            hintText: 'Kode Crypto',
                             border: OutlineInputBorder()),
                         onSaved: (String? value) {
                           setState(() {
-                            kodeSaham = value!;
+                            kodeCrypto = value!;
                           });
                         },
                         onChanged: (String? value) {
                           setState(() {
-                            kodeSaham = value!;
+                            kodeCrypto = value!;
                           });
                         },
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return "Kode Saham tidak boleh kosong";
+                            return "Kode Crypto tidak boleh kosong";
                           }
                           return null;
                         },
@@ -87,17 +87,17 @@ class _MyFormPageState extends State<MyFormPage> {
                             border: OutlineInputBorder()),
                         onSaved: (String? value) {
                           setState(() {
-                            namaPerusahaan = value!;
+                            namaCrypto = value!;
                           });
                         },
                         onChanged: (String? value) {
                           setState(() {
-                            namaPerusahaan = value!;
+                            namaCrypto = value!;
                           });
                         },
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return "Nama Perusahaan tidak boleh kosong";
+                            return "Nama Crypto tidak boleh kosong";
                           }
                           return null;
                         },
@@ -110,23 +110,23 @@ class _MyFormPageState extends State<MyFormPage> {
                             fontSize: 14,
                             fontFamily: 'Alexandria-Light'),
                         decoration: const InputDecoration(
-                            hintText: 'Harga Saham',
+                            hintText: 'Harga Crypto',
                             border: OutlineInputBorder()),
                         onSaved: (String? value) {
                           setState(() {
-                            hargaSaham = int.parse(value!);
+                            hargaCrypto = int.parse(value!);
                           });
                         },
                         onChanged: (String? value) {
                           setState(() {
-                            hargaSaham = int.parse(value!);
+                            hargaCrypto = int.parse(value!);
                           });
                         },
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return "Harga Saham tidak boleh kosong";
+                            return "Harga Crypto tidak boleh kosong";
                           } else if (int.tryParse(value) == null) {
-                            return "Harga Saham berupa angka";
+                            return "Harga Crypto berupa angka";
                           }
                           return null;
                         },
@@ -174,10 +174,10 @@ class _MyFormPageState extends State<MyFormPage> {
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     final response =
-                        await request.post("${siteUrl}/stock/add/", {
-                      'kode_saham': kodeSaham,
-                      'nama_perusahaan': namaPerusahaan,
-                      'harga_saham': '$hargaSaham',
+                        await request.post("${siteUrl}/crypto/add/", {
+                      'kode_crypto': kodeCrypto,
+                      'nama_crypto': namaCrypto,
+                      'harga_crypto': '$hargaCrypto',
                       'risk': risk,
                     });
                     _formKey.currentState!.reset();
@@ -185,12 +185,12 @@ class _MyFormPageState extends State<MyFormPage> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const MyWatchList()),
+                          builder: (context) => const MyCryptoWatchList()),
                     );
                   }
                 },
                 child: const Text(
-                  "Tambahkan Saham",
+                  "Tambahkan Crypto",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),

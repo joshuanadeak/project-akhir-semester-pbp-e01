@@ -1,35 +1,35 @@
 import 'package:investops/assets/constants.dart';
-import 'package:investops/model/stock_market.dart';
+import 'package:investops/model/crypto_market.dart';
 import 'package:investops/page/login.dart';
-import 'package:investops/page/mywatchlist.dart';
-import 'package:investops/page/porto_detail.dart';
+import 'package:investops/page/crypto/crypto_watchlist.dart';
+import 'package:investops/page/crypto/crypto_porto_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
-class MyPorto extends StatefulWidget {
-  const MyPorto({Key? key}) : super(key: key);
+class CryptoPorto extends StatefulWidget {
+  const CryptoPorto({Key? key}) : super(key: key);
 
   @override
-  State<MyPorto> createState() => Myporto();
+  State<CryptoPorto> createState() => Cryptoporto();
 }
 
-class Myporto extends State<MyPorto> {
+class Cryptoporto extends State<CryptoPorto> {
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
-    Future<List<StockMarket>> getStockPorto() async {
-      var url = '${siteUrl}/stock/json/';
+    Future<List<CryptoMarket>> getCryptoPorto() async {
+      var url = '${siteUrl}/crypto/json/';
       var response = await request.get(url);
-      List<StockMarket> listStockPorto = [];
+      List<CryptoMarket> listCryptoPorto = [];
       for (var d in response) {
         if (d != null) {
-          listStockPorto.add(StockMarket.fromJson(d));
+          listCryptoPorto.add(CryptoMarket.fromJson(d));
         }
       }
 
-      return listStockPorto;
+      return listCryptoPorto;
     }
 
     return Scaffold(
@@ -40,7 +40,7 @@ class Myporto extends State<MyPorto> {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyWatchList()),
+                MaterialPageRoute(builder: (context) => const MyCryptoWatchList()),
               );
             },
           ),
@@ -52,7 +52,7 @@ class Myporto extends State<MyPorto> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const MyWatchList()),
+                        builder: (context) => const MyCryptoWatchList()),
                   );
                 }),
                 icon: const Icon(Icons.insert_chart_outlined_rounded))
@@ -88,7 +88,7 @@ class Myporto extends State<MyPorto> {
             Container(
               padding: const EdgeInsets.all(15),
               child: const Text(
-                "Portofolio menampilkan investasi saham yang dimiliki oleh pengguna. Pengguna dapat menjual kepemilikan sahamnya.",
+                "Portofolio menampilkan investasi crypto yang dimiliki oleh pengguna. Pengguna dapat menjual kepemilikan cryptonya.",
                 style: TextStyle(
                     color: Colors.white,
                     height: 1.5,
@@ -125,7 +125,7 @@ class Myporto extends State<MyPorto> {
                                 child: Row(
                                   children: const [
                                     Text(
-                                        "Jadi Member Untuk Cek Dampak IHSG Terhadap",
+                                        "Jadi Member Untuk Cek Dampak Pasar Crypto",
                                         style: TextStyle(
                                             color: Colors.white, fontSize: 12))
                                   ],
@@ -162,7 +162,7 @@ class Myporto extends State<MyPorto> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      "Updated Hari Ini, 09.00 WIB",
+                      "Updated Hari Ini, 07.00 WIB",
                       style: TextStyle(fontSize: 10, color: Colors.white),
                     ),
                     InkWell(
@@ -197,7 +197,7 @@ class Myporto extends State<MyPorto> {
                         child: const Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            'KODE SAHAM',
+                            'KODE CRYPTO',
                             style: TextStyle(
                                 color: Color.fromARGB(255, 171, 171, 171),
                                 fontSize: 10,
@@ -238,9 +238,9 @@ class Myporto extends State<MyPorto> {
                   ],
                 )),
             Expanded(
-              child: FutureBuilder<List<StockMarket>>(
-                future: getStockPorto(),
-                builder: (context, AsyncSnapshot<List<StockMarket>> snapshot) {
+              child: FutureBuilder<List<CryptoMarket>>(
+                future: getCryptoPorto(),
+                builder: (context, AsyncSnapshot<List<CryptoMarket>> snapshot) {
                   if (snapshot.data == null) {
                     return const Center(child: CircularProgressIndicator());
                   } else {
@@ -251,13 +251,13 @@ class Myporto extends State<MyPorto> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PortoDetail(
-                                        kodeSaham:
-                                            snapshot.data![index].kodeSaham,
-                                        namaPerusahaan: snapshot
-                                            .data![index].namaPerusahaan,
-                                        hargaSaham:
-                                            snapshot.data![index].hargaSaham,
+                                  builder: (context) => CryptoPortoDetail(
+                                        kodeCrypto:
+                                            snapshot.data![index].kodeCrypto,
+                                        namaCrypto: snapshot
+                                            .data![index].namaCrypto,
+                                        hargaCrypto:
+                                            snapshot.data![index].hargaCrypto,
                                         risk: snapshot.data![index].risk,
                                         pk: snapshot.data![index].pk,
                                       )));
@@ -274,15 +274,15 @@ class Myporto extends State<MyPorto> {
                                     leading: CircleAvatar(
                                       backgroundColor: Colors.white,
                                       backgroundImage: NetworkImage(
-                                          "https://www.idx.co.id/Portals/0/StaticData/ListedCompanies/LogoEmiten/${snapshot.data![index].kodeSaham}.jpg"),
+                                          "https://images.reku.id/accounts/${snapshot.data![index].kodeCrypto.toLowerCase()}.png"),
                                     ),
                                     title: Text(
-                                      snapshot.data![index].kodeSaham,
+                                      snapshot.data![index].kodeCrypto,
                                       style:
                                           const TextStyle(color: Colors.white),
                                     ),
                                     subtitle: Text(
-                                      snapshot.data![index].namaPerusahaan,
+                                      snapshot.data![index].namaCrypto,
                                       style: const TextStyle(
                                           color: Color.fromARGB(
                                               255, 171, 171, 171),
@@ -295,7 +295,7 @@ class Myporto extends State<MyPorto> {
                                   child: Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                      snapshot.data![index].hargaSaham
+                                      snapshot.data![index].hargaCrypto
                                           .toString(),
                                       style: const TextStyle(
                                           color: Colors.white,
