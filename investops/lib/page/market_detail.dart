@@ -218,7 +218,7 @@ class MarketDetail extends StatelessWidget {
                   ),
                   onPressed: () async {
                     if (!request.loggedIn) {
-                      Navigator.pushReplacement(
+                      Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const LoginPage()),
