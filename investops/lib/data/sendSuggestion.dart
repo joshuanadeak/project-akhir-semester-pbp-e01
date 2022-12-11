@@ -1,11 +1,11 @@
-import 'package:investops/model/suggestionBox.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
+import 'package:investops/page/login.dart';
 
 Future<String> sendSuggestion(String feedback) async {
   var url = Uri.parse('https://investops.up.railway.app/suggestionbox/giveFeedback/');
   Map<String, String> requestBody = {
     'feedback': feedback,
+    'username': nama,
   };
   var request = http.MultipartRequest('POST', url)..fields.addAll(requestBody);
   var response = await request.send();
