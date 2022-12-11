@@ -22,8 +22,6 @@ class Data {
 class _SuggestionFormState extends State<SuggestionForm> {
   final _formKey = GlobalKey<FormState>();
   final _suggestion = TextEditingController();
-  final _username = TextEditingController();
-  final _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

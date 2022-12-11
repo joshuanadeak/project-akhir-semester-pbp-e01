@@ -19,8 +19,6 @@ class Data {
 class _ReplyFormState extends State<ReplyForm> {
   final _formKey = GlobalKey<FormState>();
   final _reply = TextEditingController();
-  final _username = TextEditingController();
-  final _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
