@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:flutter/services.dart';
 import 'package:investops/page/suggestionBoxPage.dart';
+import 'package:investops/data/sendReply.dart';
+
 
 class ReplyForm extends StatefulWidget {
-  const ReplyForm({super.key});
+  const ReplyForm({super.key, required this.id});
+  final String id;
 
   @override
   State<ReplyForm> createState() => _ReplyFormState();
@@ -41,9 +44,9 @@ class _ReplyFormState extends State<ReplyForm> {
                     border: OutlineInputBorder(),
                     labelText: 'Reply',
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green, width: 2.0),
+                      borderSide: BorderSide(color: Color.fromARGB(255, 150, 252, 3), width: 2.0),
                     ),
-                    labelStyle: TextStyle(color: Colors.green),
+                    labelStyle: TextStyle(color: Color.fromARGB(255, 150, 252, 3)),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -51,37 +54,47 @@ class _ReplyFormState extends State<ReplyForm> {
                     }
                     return null;
                   },
-                  style: TextStyle(color: Colors.green),
+                  style: TextStyle(color: Color.fromARGB(255, 150, 252, 3)),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Data')),
-                      );
-                    }
-                  },
-                  child: const Text('Submit'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
-                  )
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => SuggestionBoxPage()));
-                  },
-                  child: const Text('Back'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
-                  )
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Reply Submitted')),
+                          );
+                          sendReply(_reply.text, widget.id);
+                          print(widget.id);
+
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) => const SuggestionBoxPage()));
+                        }
+                      },
+                      child: const Text('Submit'),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromARGB(255, 150, 252, 3),
+                      )
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => const SuggestionBoxPage()));
+                      },
+                      child: const Text('Back'),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromARGB(255, 150, 252, 3),
+                      )
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

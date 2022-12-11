@@ -47,19 +47,19 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
                         style: const TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: 15,
-                          color: Colors.green,
+                          color: Color.fromARGB(255, 150, 252, 3),
                         ),),
                       subtitle: Text(snapshot.data![index].fields.reply,
                         style: const TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: 7,
-                          color: Colors.green,
+                          color: Color.fromARGB(255, 150, 252, 3),
                         ),),
                       trailing: Text("From user : "+snapshot.data![index].fields.username),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                         side: const BorderSide(
-                          color: Colors.green,
+                          color: Color.fromARGB(255, 150, 252, 3),
                           width: 2,
                         ),
                       ),
@@ -69,9 +69,17 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
                             context,
                             MaterialPageRoute(builder: (context) => const LoginPage()),);
                         } else {
+                          if (nama == "TEST") {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (context) => const ReplyForm()),);
+                            MaterialPageRoute(builder: (context) => ReplyForm(id: snapshot.data![index].pk.toString(),)),);
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('You are not an admin'),
+                              ),
+                            );
+                          }
                         }
                       }, 
                     ),
@@ -92,12 +100,20 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
           children: [
             FloatingActionButton(
               onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const SuggestionForm()),);
+                if (nama == "TEST") {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('An admin cannot give suggestion'),
+                    ),
+                  );
+                } else {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SuggestionForm()),);
+                }
               },
               child: const Icon(Icons.add),
-              backgroundColor: Colors.green,
+              backgroundColor: const Color.fromARGB(255, 150, 252, 3),
             ),
           ],
         ),
