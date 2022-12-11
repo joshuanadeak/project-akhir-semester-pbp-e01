@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:flutter/services.dart';
 import 'package:investops/page/suggestionBoxPage.dart';
+import 'package:investops/data/sendSuggestion.dart';
 
 
 
@@ -58,54 +59,20 @@ class _SuggestionFormState extends State<SuggestionForm> {
                   style: TextStyle(color: Colors.green),
                 ),
               ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: TextFormField(
-              //     controller: _username,
-              //     decoration: const InputDecoration(
-              //       border: OutlineInputBorder(),
-              //       labelText: 'Username',
-              //       enabledBorder: OutlineInputBorder(
-              //         borderSide: BorderSide(color: Colors.green, width: 2.0),
-              //       ),
-              //       labelStyle: TextStyle(color: Colors.green),
-              //     ),
-              //     validator: (value) {
-              //       if (value == null || value.isEmpty) {
-              //         return 'Please enter some text';
-              //       }
-              //       return null;
-              //     },
-              //   ),
-              // ),
-              // Padding(
-              //   padding: const EdgeInsets.all(8.0),
-              //   child: TextFormField(
-              //     controller: _password,
-              //     decoration: const InputDecoration(
-              //       border: OutlineInputBorder(),
-              //       labelText: 'Password',
-              //       enabledBorder: OutlineInputBorder(
-              //         borderSide: BorderSide(color: Colors.green, width: 2.0),
-              //       ),
-              //       labelStyle: TextStyle(color: Colors.green),
-              //     ),
-              //     validator: (value) {
-              //       if (value == null || value.isEmpty) {
-              //         return 'Please enter some text';
-              //       }
-              //       return null;
-              //     },
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing Data')),
+                        const SnackBar(content: Text('We have received your suggestion!')),
                       );
+                      sendSuggestion(_suggestion.text);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SuggestionBoxPage(),
+                        ),);
                     }
                   },
                   child: const Text('Submit'),
