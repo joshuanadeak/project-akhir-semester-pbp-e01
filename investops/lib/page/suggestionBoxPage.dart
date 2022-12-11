@@ -7,6 +7,7 @@ import 'package:investops/form/replyForm.dart';
 import 'package:investops/page/login.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:investops/data/sendAdminCheck.dart';
 
 class SuggestionBoxPage extends StatefulWidget {
   const SuggestionBoxPage({super.key});
@@ -63,13 +64,13 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
                           width: 2,
                         ),
                       ),
-                      onTap: () {
+                      onTap: () async {
                         if (!request.loggedIn) {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(builder: (context) => const LoginPage()),);
                         } else {
-                          if (nama == "TEST") {
+                          if (await checkAdmin(nama)) {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(builder: (context) => ReplyForm(id: snapshot.data![index].pk.toString(),)),);
@@ -99,8 +100,8 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FloatingActionButton(
-              onPressed: () {
-                if (nama == "TEST") {
+              onPressed: () async{
+                if (await checkAdmin(nama)) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       content: Text('An admin cannot give suggestion'),
