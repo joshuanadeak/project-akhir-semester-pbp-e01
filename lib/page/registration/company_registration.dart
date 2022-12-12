@@ -121,7 +121,7 @@ class _CompanyRegistrationPageState extends State<CompanyRegistrationPage> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    print("DEBUGGG");
+                    
                         await request.post("$siteUrl/registration", {
                       'name': nameVal,
                       'price_of_stock': '$stockPriceVal',
