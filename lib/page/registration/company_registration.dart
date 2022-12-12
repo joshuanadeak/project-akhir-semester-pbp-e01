@@ -127,12 +127,6 @@ class _CompanyRegistrationPageState extends State<CompanyRegistrationPage> {
                       'price_of_stock': '$stockPriceVal',
                     });
                     _formKey.currentState!.reset();
-
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const MyMainPage()),
-                    );
                   }
                 },
                 child: const Text(
