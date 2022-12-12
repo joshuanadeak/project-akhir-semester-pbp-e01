@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:investops/assets/constants.dart';
 import 'package:investops/main.dart';
 import 'package:investops/page/login.dart';
+import 'package:investops/page/mainpage.dart';
 import 'package:investops/page/stock/mywatchlist.dart';
 import 'package:investops/page/crypto/crypto_watchlist.dart';
 import 'package:investops/page/suggestionBoxPage.dart';
@@ -72,7 +73,7 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()),
+                MaterialPageRoute(builder: (context) => const MyMainPage()),
               );
             },
           ),
@@ -117,7 +118,7 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()),
+                MaterialPageRoute(builder: (context) => const MyMainPage()),
               );
             },
           ),
@@ -131,7 +132,7 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()),
+                MaterialPageRoute(builder: (context) => const MyMainPage()),
               );
             },
           ),
@@ -145,7 +146,7 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()),
+                MaterialPageRoute(builder: (context) => const MyMainPage()),
               );
             },
           ),

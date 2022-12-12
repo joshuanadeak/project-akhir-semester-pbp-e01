@@ -1,5 +1,6 @@
 import 'package:investops/assets/constants.dart';
 import 'package:investops/main.dart';
+import 'package:investops/page/mainpage.dart';
 import 'package:investops/page/register.dart';
 import 'package:flutter/material.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -36,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()),
+                  MaterialPageRoute(builder: (context) => const MyMainPage()),
                 );
               },
               child: const Text(
@@ -161,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const MyHomePage()),
+                            builder: (context) => const MyMainPage()),
                       );
                     } else {
                       showDialog(

@@ -1,7 +1,11 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
+import 'package:investops/page/login.dart';
+import 'package:investops/page/register.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:investops/widgets/elev_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -70,83 +74,86 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
-  final String title = 'Investops';
+  final String title = 'INVESTOPS';
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      if (_counter != 0) {
-        _counter--;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          title: Text(
-            widget.title,
-            style: TextStyle(fontWeight: FontWeight.w500),
-          ),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: const BoxDecoration(
         ),
-        drawer: UniversalDrawer(),
-        body: Center(
+        child: SafeArea(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              // Using ternary operator
-              ((_counter % 2 == 1)
-                  ? const Text('GANJIL', style: TextStyle(color: Colors.blue))
-                  : const Text('GENAP', style: TextStyle(color: Colors.red))),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headline4,
-              ),
-            ],
-          ),
-        ),
-        backgroundColor: Colors.black,
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Container(
-          padding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 20.0),
-          // color: Colors.amber,
-          child: Row(
-            textDirection: TextDirection.rtl,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              FloatingActionButton(
-                backgroundColor: Color.fromARGB(255, 150, 252, 3),
-                onPressed: _incrementCounter,
-                tooltip: 'Increment',
-                child: const Icon(Icons.add, color: Colors.black),
-              ),
-              if (_counter != 0)
-                FloatingActionButton(
-                  backgroundColor: Color.fromARGB(255, 150, 252, 3),
-                  onPressed: _decrementCounter,
-                  tooltip: 'Decrement',
-                  child: const Icon(
-                    Icons.remove,
-                    color: Colors.black,
+              Expanded(
+                flex: 5,
+                child: Container(
+                  padding: const EdgeInsets.only(top: 64),
+                  child: const Text(
+                    "INVESTOPS.",
+                    style: TextStyle(
+                        fontSize: 36,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
+              ),
+              Expanded(
+                flex: 3,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 32),
+                      child: const Text(
+                        "Stop Waiting, Start Investing",
+                        style: TextStyle(
+                          fontSize: 22,
+                          color: Colors.white,
+                          
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 16),
+                      child: MyElevatedButton(
+                        text: const Text("Login"),
+                        backgroundColor: const Color.fromARGB(255, 150, 252, 3),
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const LoginPage()),
+                          );
+                        },
+                      ),
+                    ),
+                    MyElevatedButton(
+                      text: const Text("Register"),
+                      backgroundColor: const Color.fromARGB(255, 150, 252, 3),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const RegisterPage()),
+                        );
+                      },
+                    ),
+                    
+                  ],
+                ),
+              )
             ],
           ),
-        ) // This trailing comma makes auto-formatting nicer for build methods.
-        );
+        ),
+      ),
+    );
   }
 }
