@@ -1,5 +1,5 @@
 import 'package:investops/assets/constants.dart';
-import 'package:investops/model/crypto_market.dart';
+import 'package:investops/model/company.dart';
 import 'package:investops/page/login.dart';
 import 'package:investops/page/crypto/crypto_watchlist.dart';
 import 'package:investops/page/crypto/crypto_porto_detail.dart';

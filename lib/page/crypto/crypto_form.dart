@@ -31,7 +31,8 @@ class _MyCryptoFormPageState extends State<MyCryptoFormPage> {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyCryptoWatchList()),
+                MaterialPageRoute(
+                    builder: (context) => const MyCryptoWatchList()),
               );
             },
           ),

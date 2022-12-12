@@ -1,23 +1,14 @@
-class CryptoMarket {
-  CryptoMarket({
-    required this.kodeCrypto,
-    required this.namaCrypto,
-    required this.hargaCrypto,
-    required this.risk,
-    required this.pk,
+class Company {
+  Company({
+    required this.name,
+    required this.stockPrice,
   });
 
-  String kodeCrypto;
-  String namaCrypto;
-  int hargaCrypto;
-  String risk;
-  int pk;
+  String name;
+  int stockPrice;
 
-  factory CryptoMarket.fromJson(Map<String, dynamic> json) => CryptoMarket(
-    kodeCrypto: json["fields"]["kode_crypto"],
-    namaCrypto: json["fields"]["nama_crypto"],
-    hargaCrypto: json["fields"]["harga_crypto"],
-    risk: json["fields"]["risk"],
-    pk: json["pk"],
-  );
+  factory Company.fromJson(Map<String, dynamic> json) => Company(
+        name: json["fields"]["name"],
+        stockPrice: json["fields"]["price_of_stock"],
+      );
 }
