@@ -20,7 +20,7 @@ class Myporto extends State<MyPorto> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     Future<List<StockMarket>> getStockPorto() async {
-      var url = '${siteUrl}/stock/json/';
+      var url = '$siteUrl/stock/json/';
       var response = await request.get(url);
       List<StockMarket> listStockPorto = [];
       for (var d in response) {
@@ -75,7 +75,7 @@ class Myporto extends State<MyPorto> {
                         style: const TextStyle(
                             color: Colors.black, fontFamily: 'Alexandria'),
                         children: [
-                          TextSpan(text: "${nama}'s "),
+                          TextSpan(text: "$nama's "),
                           const TextSpan(
                               text: "Portofolio",
                               style: TextStyle(fontWeight: FontWeight.bold)),

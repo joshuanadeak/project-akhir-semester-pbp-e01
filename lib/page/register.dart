@@ -144,30 +144,29 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    final response = await request
-                        .post("${siteUrl}/authenticate/register/", {
+                     await request
+                        .post("$siteUrl/authenticate/register/", {
                       'username': _username,
                       'password1': _password,
                       'password2': _password,
-                    });
-                    if (response['status'] == true) {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const LoginPage()),
-                      );
-                    } else {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return Dialog(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 21, 21, 21),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              elevation: 10,
-                              child: Container(
+                    }).then((value){
+                      if (value['status'] == true) {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginPage()),
+                        );
+                      } else {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Dialog(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 21, 21, 21),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                elevation: 10,
                                 child: ListView(
                                     padding: const EdgeInsets.only(
                                         top: 20, bottom: 20),
@@ -177,7 +176,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                           child: Text(
                                         'Username atau Password tidak valid',
                                         style: TextStyle(
-                                            fontSize: 15, color: Colors.white),
+                                            fontSize: 15,
+                                            color: Colors.white),
                                       )),
                                       const SizedBox(height: 20),
                                       TextButton(
@@ -193,10 +193,11 @@ class _RegisterPageState extends State<RegisterPage> {
                                         ),
                                       )
                                     ]),
-                              ),
-                            );
-                          });
-                    }
+                              );
+                            });
+                      }
+                    });
+                    
                   }
                 },
                 child: const Text(

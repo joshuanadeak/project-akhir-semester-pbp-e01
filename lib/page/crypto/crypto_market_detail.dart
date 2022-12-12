@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'package:investops/assets/constants.dart';
 import 'package:investops/page/login.dart';
 import 'package:investops/page/crypto/crypto_watchlist.dart';
@@ -6,11 +8,6 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
 class CryptoMarketDetail extends StatelessWidget {
-  final kodeCrypto;
-  final namaCrypto;
-  final hargaCrypto;
-  final risk;
-  final pk;
 
   const CryptoMarketDetail({
     Key? key,
@@ -20,6 +17,12 @@ class CryptoMarketDetail extends StatelessWidget {
     required this.risk,
     required this.pk,
   }) : super(key: key);
+
+  final String kodeCrypto;
+  final String namaCrypto;
+  final int hargaCrypto;
+  final String risk;
+  final int pk;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +105,7 @@ class CryptoMarketDetail extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            '${hargaCrypto}',
+                                            '$hargaCrypto',
                                             style: const TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 14),
@@ -154,13 +157,13 @@ class CryptoMarketDetail extends StatelessWidget {
                                             ),
                                           ),
                                           (risk == 'LOW')
-                                              ? Text('${risk}',
+                                              ? Text(risk,
                                                   style: const TextStyle(
                                                       color: Color.fromARGB(
                                                           255, 150, 252, 3),
                                                       fontSize: 14))
                                               : Text(
-                                                  '${risk}',
+                                                  risk,
                                                   style: const TextStyle(
                                                       color: Colors.red,
                                                       fontSize: 14),
@@ -224,7 +227,7 @@ class CryptoMarketDetail extends StatelessWidget {
                             builder: (context) => const LoginPage()),
                       );
                     } else {
-                      final response = await request
+                      await request
                           .post("${siteUrl}/crypto/delete_market/${pk}", {});
                       showDialog(
                           context: context,
@@ -236,38 +239,36 @@ class CryptoMarketDetail extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               elevation: 10,
-                              child: Container(
-                                child: ListView(
-                                    padding: const EdgeInsets.only(
-                                        top: 20, bottom: 20),
-                                    shrinkWrap: true,
-                                    children: <Widget>[
-                                      const Center(
-                                          child: Text(
-                                        'Pembelian Berhasil',
+                              child: ListView(
+                                  padding: const EdgeInsets.only(
+                                      top: 20, bottom: 20),
+                                  shrinkWrap: true,
+                                  children: <Widget>[
+                                    const Center(
+                                        child: Text(
+                                      'Pembelian Berhasil',
+                                      style: TextStyle(
+                                          fontSize: 15, color: Colors.white),
+                                    )),
+                                    const SizedBox(height: 20),
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const MyCryptoWatchList()),
+                                        );
+                                      },
+                                      child: const Text(
+                                        'Kembali ke Watchlist',
                                         style: TextStyle(
-                                            fontSize: 15, color: Colors.white),
-                                      )),
-                                      const SizedBox(height: 20),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    const MyCryptoWatchList()),
-                                          );
-                                        },
-                                        child: const Text(
-                                          'Kembali ke Watchlist',
-                                          style: TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 150, 252, 3),
-                                              fontSize: 12),
-                                        ),
-                                      )
-                                    ]),
-                              ),
+                                            color: Color.fromARGB(
+                                                255, 150, 252, 3),
+                                            fontSize: 12),
+                                      ),
+                                    )
+                                  ]),
                             );
                           });
                     }
