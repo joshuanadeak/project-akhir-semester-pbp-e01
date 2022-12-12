@@ -1,8 +1,8 @@
 import 'package:http/http.dart' as http;
 
 Future<bool> sendDeleteFeedback(id) async {
-  var url = Uri.parse('https://investops.up.railway.app/suggestionbox/deleteFeedbackFlutter/');
-  // var url = Uri.parse('http://localhost:8000/suggestionbox/deleteFeedbackFlutter/');
+  // var url = Uri.parse('https://investops.up.railway.app/suggestionbox/deleteFeedbackFlutter/');
+  var url = Uri.parse('http://localhost:8000/suggestionbox/deleteFeedbackFlutter/');
   Map<String, String> requestBody = {
     'id': id,
   };
