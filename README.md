@@ -6,7 +6,7 @@
 
 [![Prerelease](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/pre-release.yml/badge.svg?)](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/pre-release.yml)
 
-[![Pipeline Status Branch](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/development.yml/badge.svg?branch=staging)](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/staging.yml)
+[![Pipeline Status Branch](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/staging.yml/badge.svg?branch=staging)](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/staging.yml)
 
 ## Topic : Trade and Investment
 
