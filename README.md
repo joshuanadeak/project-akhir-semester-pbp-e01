@@ -2,6 +2,12 @@
 
 [![Build status](https://build.appcenter.ms/v0.1/apps/4b96352a-9823-4744-827d-2e3d72152038/branches/main/badge)](https://appcenter.ms)
 
+[![Release](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/release.yml)
+
+[![Prerelease](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/pre-release.yml/badge.svg?)](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/pre-release.yml)
+
+[![Pipeline Status Branch](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/development.yml/badge.svg?branch=development)](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/development.yml)
+
 ## Topic : Trade and Investment
 
 ## Investops
