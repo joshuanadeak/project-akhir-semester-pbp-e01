@@ -14,10 +14,10 @@ class CryptoMarket {
   int pk;
 
   factory CryptoMarket.fromJson(Map<String, dynamic> json) => CryptoMarket(
-    kodeCrypto: json["fields"]["kode_crypto"],
-    namaCrypto: json["fields"]["nama_crypto"],
-    hargaCrypto: json["fields"]["harga_crypto"],
-    risk: json["fields"]["risk"],
-    pk: json["pk"],
-  );
+        kodeCrypto: json["fields"]["kode_crypto"],
+        namaCrypto: json["fields"]["nama_crypto"],
+        hargaCrypto: json["fields"]["harga_crypto"],
+        risk: json["fields"]["risk"],
+        pk: json["pk"],
+      );
 }

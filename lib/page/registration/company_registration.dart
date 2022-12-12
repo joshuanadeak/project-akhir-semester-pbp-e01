@@ -1,24 +1,23 @@
 import 'package:investops/assets/constants.dart';
-import 'package:investops/page/stock/mywatchlist.dart';
+import 'package:investops/page/mainpage.dart';
 import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
-class MyFormPage extends StatefulWidget {
-  const MyFormPage({Key? key}) : super(key: key);
+class CompanyRegistrationPage extends StatefulWidget {
+  const CompanyRegistrationPage({Key? key}) : super(key: key);
 
   @override
-  State<MyFormPage> createState() => _MyFormPageState();
+  State<CompanyRegistrationPage> createState() =>
+      _CompanyRegistrationPageState();
 }
 
-class _MyFormPageState extends State<MyFormPage> {
+class _CompanyRegistrationPageState extends State<CompanyRegistrationPage> {
   final _formKey = GlobalKey<FormState>();
 
-  String kodeSaham = "";
-  String namaPerusahaan = "";
-  int hargaSaham = 0;
-  String risk = "";
+  String nameVal = "";
+  int stockPriceVal = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +30,11 @@ class _MyFormPageState extends State<MyFormPage> {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyWatchList()),
+                MaterialPageRoute(builder: (context) => const MyMainPage()),
               );
             },
           ),
-          title: const Text('Tambah Saham'),
+          title: const Text('Registrasi Perusahaan'),
         ),
         drawer: const UniversalDrawer(),
         backgroundColor: Colors.black,
@@ -56,43 +55,16 @@ class _MyFormPageState extends State<MyFormPage> {
                             fontSize: 14,
                             fontFamily: 'Alexandria-Light'),
                         decoration: const InputDecoration(
-                            hintText: 'Kode Saham',
-                            border: OutlineInputBorder()),
-                        onSaved: (String? value) {
-                          setState(() {
-                            kodeSaham = value!;
-                          });
-                        },
-                        onChanged: (String? value) {
-                          setState(() {
-                            kodeSaham = value!;
-                          });
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Kode Saham tidak boleh kosong";
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        cursorColor: const Color.fromARGB(255, 5, 110, 86),
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'Alexandria-Light'),
-                        decoration: const InputDecoration(
                             hintText: 'Nama Perusahaan',
                             border: OutlineInputBorder()),
                         onSaved: (String? value) {
                           setState(() {
-                            namaPerusahaan = value!;
+                            nameVal = value!;
                           });
                         },
                         onChanged: (String? value) {
                           setState(() {
-                            namaPerusahaan = value!;
+                            nameVal = value!;
                           });
                         },
                         validator: (String? value) {
@@ -114,12 +86,12 @@ class _MyFormPageState extends State<MyFormPage> {
                             border: OutlineInputBorder()),
                         onSaved: (String? value) {
                           setState(() {
-                            hargaSaham = int.parse(value!);
+                            stockPriceVal = int.parse(value!);
                           });
                         },
                         onChanged: (String? value) {
                           setState(() {
-                            hargaSaham = int.parse(value!);
+                            stockPriceVal = int.parse(value!);
                           });
                         },
                         validator: (String? value) {
@@ -127,32 +99,8 @@ class _MyFormPageState extends State<MyFormPage> {
                             return "Harga Saham tidak boleh kosong";
                           } else if (int.tryParse(value) == null) {
                             return "Harga Saham berupa angka";
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        cursorColor: const Color.fromARGB(255, 5, 110, 86),
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'Alexandria-Light'),
-                        decoration: const InputDecoration(
-                            hintText: 'Risk', border: OutlineInputBorder()),
-                        onSaved: (String? value) {
-                          setState(() {
-                            risk = value!;
-                          });
-                        },
-                        onChanged: (String? value) {
-                          setState(() {
-                            risk = value!;
-                          });
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Risk tidak boleh kosong";
+                          } else if (int.tryParse(value)! < 0) {
+                            return "Harga Saham berupa angka positif";
                           }
                           return null;
                         },
@@ -174,25 +122,15 @@ class _MyFormPageState extends State<MyFormPage> {
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     
-                        await request.post("$siteUrl/stock/add/", {
-                      'kode_saham': kodeSaham,
-                      'nama_perusahaan': namaPerusahaan,
-                      'harga_saham': '$hargaSaham',
-                      'risk': risk,
-                    }).then((value){
-
-                    _formKey.currentState!.reset();
-
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const MyWatchList()),
-                    );
+                        await request.post("$siteUrl/registration", {
+                      'name': nameVal,
+                      'price_of_stock': '$stockPriceVal',
                     });
+                    _formKey.currentState!.reset();
                   }
                 },
                 child: const Text(
-                  "Tambahkan Saham",
+                  "Registrasi perusahaan anda",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),

@@ -1,7 +1,6 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:investops/page/drawer.dart';
 import 'package:investops/page/login.dart';
+import 'package:investops/page/mainpage.dart';
 import 'package:investops/page/register.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -65,7 +64,7 @@ class MyApp extends StatelessWidget {
               // brightness: Brightness.light,
               // primaryColor: Color(0xff5D4524),
               primarySwatch: Colors.lime,
-              iconTheme: IconThemeData(color: Colors.white)),
+              iconTheme: const IconThemeData(color: Colors.white)),
           home: const MyHomePage(),
         ));
   }
@@ -92,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             children: [
               Expanded(
-                flex: 5,
+                flex: 2,
                 child: Container(
                   padding: const EdgeInsets.only(top: 64),
                   child: const Text(
@@ -102,6 +101,24 @@ class _MyHomePageState extends State<MyHomePage> {
                         color: Colors.white,
                         fontWeight: FontWeight.bold),
                   ),
+                ),
+              ),
+              Expanded(
+                flex: 4,
+                child: Container(
+                  height: 520,
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                    image: const AssetImage(
+                        'assets/images/logo.png'),
+                    fit: BoxFit.fill,
+                    colorFilter: ColorFilter.mode(
+                        const Color.fromARGB(255, 201, 200, 200)
+                            .withOpacity(0.6),
+                        BlendMode.dstATop),
+                    )
+                  )
                 ),
               ),
               Expanded(
@@ -126,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     Container(
                       margin: const EdgeInsets.only(bottom: 16),
                       child: MyElevatedButton(
-                        text: const Text("Login"),
+                        text: const Text("Log In"),
                         backgroundColor: const Color.fromARGB(255, 150, 252, 3),
                         onPressed: () {
                           Navigator.pushReplacement(
@@ -146,7 +163,26 @@ class _MyHomePageState extends State<MyHomePage> {
                         );
                       },
                     ),
-                    
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        textStyle: const TextStyle(
+                          fontSize: 10,
+                          color: Colors.white,
+                          fontFamily: 'Alexandria-Light',),
+                      ),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const MyMainPage()),
+                        );
+                      },
+                      child: const Text('Continue without Log In',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               )
