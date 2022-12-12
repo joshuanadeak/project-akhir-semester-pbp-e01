@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:investops/page/login.dart';
 import 'package:investops/page/mainpage.dart';
+import 'package:investops/page/quiz/quiz.dart';
 
 import '../drawer.dart';
 
@@ -24,22 +25,22 @@ class _ResultPageState extends State<ResultPage> {
           Column(
             children: [
               const Spacer(flex: 2),
-              const Text(
-                "Thank you for taking the quiz, ", //tambahin nama
-                style:TextStyle(color: Colors.white,
+              Text(
+                "Thank you for taking the quiz, $nama", //tambahin nama
+                style:const TextStyle(color: Colors.white,
                       fontFamily: 'Alexandria',
                       fontSize: 18),
               ),
               const Spacer(),
-              Text(
-                "Result, $nama", //tambahin nama
-                style:const TextStyle(color: Colors.white,
+              const Text(
+                "Result", //tambahin nama
+                style:TextStyle(color: Colors.white,
                       fontFamily: 'Alexandria',
                       fontSize: 24),
               ),
-              const Text(
-                " ", //tambahin score
-                style:TextStyle(color: Colors.white,
+              Text(
+                "$nilaiKuis", //tambahin score
+                style:const TextStyle(color: Colors.white,
                       fontFamily: 'Alexandria',
                       fontSize: 32),
               ),

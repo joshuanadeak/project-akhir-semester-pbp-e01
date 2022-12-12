@@ -15,7 +15,7 @@ class _WelcomeQuizPageState extends State<WelcomeQuizPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Quiz'),
+        title: const Text('Welcome Quiz'),
       ),
       drawer: const UniversalDrawer(),
       body: Center(
