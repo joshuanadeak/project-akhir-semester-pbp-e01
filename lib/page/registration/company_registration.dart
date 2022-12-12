@@ -1,24 +1,23 @@
 import 'package:investops/assets/constants.dart';
-import 'package:investops/page/crypto/crypto_watchlist.dart';
+import 'package:investops/page/mainpage.dart';
 import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
-class MyCryptoFormPage extends StatefulWidget {
-  const MyCryptoFormPage({Key? key}) : super(key: key);
+class CompanyRegistrationPage extends StatefulWidget {
+  const CompanyRegistrationPage({Key? key}) : super(key: key);
 
   @override
-  State<MyCryptoFormPage> createState() => _MyCryptoFormPageState();
+  State<CompanyRegistrationPage> createState() =>
+      _CompanyRegistrationPageState();
 }
 
-class _MyCryptoFormPageState extends State<MyCryptoFormPage> {
+class _CompanyRegistrationPageState extends State<CompanyRegistrationPage> {
   final _formKey = GlobalKey<FormState>();
 
-  String kodeCrypto = "";
-  String namaCrypto = "";
-  int hargaCrypto = 0;
-  String risk = "";
+  String nameVal = "";
+  int stockPriceVal = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +30,11 @@ class _MyCryptoFormPageState extends State<MyCryptoFormPage> {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const MyCryptoWatchList()),
+                MaterialPageRoute(builder: (context) => const MyMainPage()),
               );
             },
           ),
-          title: const Text('Tambah Crypto'),
+          title: const Text('Registrasi Perusahaan'),
         ),
         drawer: const UniversalDrawer(),
         backgroundColor: Colors.black,
@@ -57,48 +55,21 @@ class _MyCryptoFormPageState extends State<MyCryptoFormPage> {
                             fontSize: 14,
                             fontFamily: 'Alexandria-Light'),
                         decoration: const InputDecoration(
-                            hintText: 'Kode Crypto',
-                            border: OutlineInputBorder()),
-                        onSaved: (String? value) {
-                          setState(() {
-                            kodeCrypto = value!;
-                          });
-                        },
-                        onChanged: (String? value) {
-                          setState(() {
-                            kodeCrypto = value!;
-                          });
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Kode Crypto tidak boleh kosong";
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        cursorColor: const Color.fromARGB(255, 5, 110, 86),
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'Alexandria-Light'),
-                        decoration: const InputDecoration(
                             hintText: 'Nama Perusahaan',
                             border: OutlineInputBorder()),
                         onSaved: (String? value) {
                           setState(() {
-                            namaCrypto = value!;
+                            nameVal = value!;
                           });
                         },
                         onChanged: (String? value) {
                           setState(() {
-                            namaCrypto = value!;
+                            nameVal = value!;
                           });
                         },
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return "Nama Crypto tidak boleh kosong";
+                            return "Nama Perusahaan tidak boleh kosong";
                           }
                           return null;
                         },
@@ -111,49 +82,25 @@ class _MyCryptoFormPageState extends State<MyCryptoFormPage> {
                             fontSize: 14,
                             fontFamily: 'Alexandria-Light'),
                         decoration: const InputDecoration(
-                            hintText: 'Harga Crypto',
+                            hintText: 'Harga Saham',
                             border: OutlineInputBorder()),
                         onSaved: (String? value) {
                           setState(() {
-                            hargaCrypto = int.parse(value!);
+                            stockPriceVal = int.parse(value!);
                           });
                         },
                         onChanged: (String? value) {
                           setState(() {
-                            hargaCrypto = int.parse(value!);
+                            stockPriceVal = int.parse(value!);
                           });
                         },
                         validator: (String? value) {
                           if (value == null || value.isEmpty) {
-                            return "Harga Crypto tidak boleh kosong";
+                            return "Harga Saham tidak boleh kosong";
                           } else if (int.tryParse(value) == null) {
-                            return "Harga Crypto berupa angka";
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        cursorColor: const Color.fromARGB(255, 5, 110, 86),
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
-                            fontFamily: 'Alexandria-Light'),
-                        decoration: const InputDecoration(
-                            hintText: 'Risk', border: OutlineInputBorder()),
-                        onSaved: (String? value) {
-                          setState(() {
-                            risk = value!;
-                          });
-                        },
-                        onChanged: (String? value) {
-                          setState(() {
-                            risk = value!;
-                          });
-                        },
-                        validator: (String? value) {
-                          if (value == null || value.isEmpty) {
-                            return "Risk tidak boleh kosong";
+                            return "Harga Saham berupa angka";
+                          } else if (int.tryParse(value)! < 0) {
+                            return "Harga Saham berupa angka positif";
                           }
                           return null;
                         },
@@ -174,26 +121,22 @@ class _MyCryptoFormPageState extends State<MyCryptoFormPage> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    
-                        await request.post("$siteUrl/crypto/add/", {
-                      'kode_crypto': kodeCrypto,
-                      'nama_crypto': namaCrypto,
-                      'harga_crypto': '$hargaCrypto',
-                      'risk': risk,
-                    }).then((value) {
-
+                    final response =
+                        await request.post("${siteUrl}/registration", {
+                      'name': nameVal,
+                      'price_of_stock': '$stockPriceVal',
+                    });
                     _formKey.currentState!.reset();
 
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const MyCryptoWatchList()),
+                          builder: (context) => const MyMainPage()),
                     );
-                    });
                   }
                 },
                 child: const Text(
-                  "Tambahkan Crypto",
+                  "Registrasi perusahaan anda",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
               ),
