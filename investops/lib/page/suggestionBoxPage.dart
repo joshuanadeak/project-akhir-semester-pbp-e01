@@ -4,6 +4,10 @@ import 'package:investops/model/suggestionBox.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:investops/form/suggestionForm.dart';
 import 'package:investops/form/replyForm.dart';
+import 'package:investops/page/login.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:investops/data/sendAdminCheck.dart';
 
 class SuggestionBoxPage extends StatefulWidget {
   const SuggestionBoxPage({super.key});
@@ -23,11 +27,12 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Suggestion Box'),
+        title: const Text('Suggestion Box'),
       ),
-      drawer: UniversalDrawer(),
+      drawer: const UniversalDrawer(),
       body: Center(
         child: FutureBuilder<List<FeedbackUser>>(
           future: _futureFeedback,
@@ -40,29 +45,43 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
                       title: Text(snapshot.data![index].fields.feedback,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: 15,
-                          color: Colors.green,
+                          color: Color.fromARGB(255, 150, 252, 3),
                         ),),
                       subtitle: Text(snapshot.data![index].fields.reply,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontWeight: FontWeight.normal,
                           fontSize: 7,
-                          color: Colors.green,
+                          color: Color.fromARGB(255, 150, 252, 3),
                         ),),
                       trailing: Text("From user : "+snapshot.data![index].fields.username),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
-                        side: BorderSide(
-                          color: Colors.green,
+                        side: const BorderSide(
+                          color: Color.fromARGB(255, 150, 252, 3),
                           width: 2,
                         ),
                       ),
-                      onTap: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => ReplyForm()),);
+                      onTap: () async {
+                        if (!request.loggedIn) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const LoginPage()),);
+                        } else {
+                          if (await checkAdmin(nama)) {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => ReplyForm(id: snapshot.data![index].pk.toString(),)),);
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('You are not an admin'),
+                              ),
+                            );
+                          }
+                        }
                       }, 
                     ),
                   );
@@ -81,13 +100,21 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FloatingActionButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => SuggestionForm()),);
+              onPressed: () async{
+                if (await checkAdmin(nama)) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('An admin cannot give suggestion'),
+                    ),
+                  );
+                } else {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SuggestionForm()),);
+                }
               },
               child: const Icon(Icons.add),
-              backgroundColor: Colors.green,
+              backgroundColor: const Color.fromARGB(255, 150, 252, 3),
             ),
           ],
         ),
