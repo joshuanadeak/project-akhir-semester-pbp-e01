@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:countup/countup.dart';
 
 class MyMainPage extends StatefulWidget {
@@ -62,7 +63,7 @@ class _MyMainPageState extends State<MyMainPage> {
               // brightness: Brightness.light,
               // primaryColor: Color(0xff5D4524),
               primarySwatch: Colors.lime,
-              iconTheme: const IconThemeData(color: Colors.white)),
+              iconTheme: IconThemeData(color: Colors.white)),
           home: const MyHomePage(),
         ));
   }
@@ -78,8 +79,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
 
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
 
+  void _decrementCounter() {
+    setState(() {
+      if (_counter != 0) {
+        _counter--;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,10 +102,10 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Colors.black,
           title: Text(
             widget.title,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-        drawer: const UniversalDrawer(),
+        drawer: UniversalDrawer(),
         body: Center(
         child: DraggableScrollableSheet(
             initialChildSize: 0.85,

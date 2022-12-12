@@ -22,7 +22,7 @@ class MyCryptoWatchlist extends State<MyCryptoWatchList> {
     final request = context.watch<CookieRequest>();
 
     Future<List<CryptoMarket>> getCryptoMarket() async {
-      var url = '$siteUrl/crypto/mjson/';
+      var url = '${siteUrl}/crypto/mjson/';
       var response = await request.get(url);
       List<CryptoMarket> listCryptoMarket = [];
       for (var i in response) {

@@ -22,7 +22,7 @@ class MyWatchlist extends State<MyWatchList> {
     final request = context.watch<CookieRequest>();
 
     Future<List<StockMarket>> getStockMarket() async {
-      var url = '$siteUrl/stock/mjson/';
+      var url = '${siteUrl}/stock/mjson/';
       var response = await request.get(url);
       List<StockMarket> listStockMarket = [];
       for (var d in response) {

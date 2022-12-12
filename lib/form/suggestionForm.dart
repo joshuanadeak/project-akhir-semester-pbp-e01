@@ -1,34 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
-import 'package:investops/page/suggestion_box_page.dart';
-import 'package:investops/data/send_reply.dart';
-import 'package:investops/data/send_delete_feedback.dart';
+import 'package:flutter/services.dart';
+import 'package:investops/page/suggestionBoxPage.dart';
+import 'package:investops/data/sendSuggestion.dart';
 
-class ReplyForm extends StatefulWidget {
-  const ReplyForm({super.key, required this.id});
-  final String id;
+
+
+class SuggestionForm extends StatefulWidget {
+  const SuggestionForm({super.key});
 
   @override
-  State<ReplyForm> createState() => _ReplyFormState();
+  State<SuggestionForm> createState() => _SuggestionFormState();
 }
 
 class Data {
-  String reply;
+  String feedback;
 
-  Data({required this.reply});
+  Data({required this.feedback});
 }
 
-class _ReplyFormState extends State<ReplyForm> {
+class _SuggestionFormState extends State<SuggestionForm> {
   final _formKey = GlobalKey<FormState>();
-  final _reply = TextEditingController();
+  final _suggestion = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Reply Box'),
+        title: Text('Suggestion Box'),
       ),
-      drawer: const UniversalDrawer(),
+      drawer: UniversalDrawer(),
       body: Center(
         child: Form(
           key: _formKey,
@@ -38,10 +39,10 @@ class _ReplyFormState extends State<ReplyForm> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
-                  controller: _reply,
+                  controller: _suggestion,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Reply',
+                    labelText: 'Suggestion',
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Color.fromARGB(255, 150, 252, 3), width: 2.0),
                     ),
@@ -53,7 +54,7 @@ class _ReplyFormState extends State<ReplyForm> {
                     }
                     return null;
                   },
-                  style: const TextStyle(color: Color.fromARGB(255, 150, 252, 3)),
+                  style: TextStyle(color: Color.fromARGB(255, 150, 252, 3)),
                 ),
               ),
               Row(
@@ -65,45 +66,36 @@ class _ReplyFormState extends State<ReplyForm> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Reply Submitted')),
+                            const SnackBar(content: Text('We have received your suggestion!')),
                           );
-                          sendReply(_reply.text, widget.id);
-
-                          Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (context) => const SuggestionBoxPage()));
+                          sendSuggestion(_suggestion.text);
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const SuggestionBoxPage(),
+                            ),);
                         }
                       },
+                      child: const Text('Submit'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 150, 252, 3),
-                      ),
-                      child: const Text('Submit')
+                        primary: Color.fromARGB(255, 150, 252, 3),
+                      )
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => const SuggestionBoxPage()));
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SuggestionBoxPage(),
+                          ),);
                       },
+                      child: const Text('Back'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 150, 252, 3),
-                      ),
-                      child: const Text('Back')
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        sendDeleteFeedback(widget.id);
-                        Navigator.pushReplacement(context,
-                            MaterialPageRoute(builder: (context) => const SuggestionBoxPage()));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color.fromARGB(255, 150, 252, 3),
-                      ),
-                      child: const Text('Delete')
+                        primary: Color.fromARGB(255, 150, 252, 3),
+                      )
                     ),
                   ),
                 ],
@@ -115,3 +107,4 @@ class _ReplyFormState extends State<ReplyForm> {
     );
   }
 }
+

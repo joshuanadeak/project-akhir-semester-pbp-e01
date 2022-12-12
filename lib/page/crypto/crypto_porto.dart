@@ -20,7 +20,7 @@ class Cryptoporto extends State<CryptoPorto> {
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     Future<List<CryptoMarket>> getCryptoPorto() async {
-      var url = '$siteUrl/crypto/json/';
+      var url = '${siteUrl}/crypto/json/';
       var response = await request.get(url);
       List<CryptoMarket> listCryptoPorto = [];
       for (var d in response) {
@@ -75,7 +75,7 @@ class Cryptoporto extends State<CryptoPorto> {
                         style: const TextStyle(
                             color: Colors.black, fontFamily: 'Alexandria'),
                         children: [
-                          TextSpan(text: "$nama's "),
+                          TextSpan(text: "${nama}'s "),
                           const TextSpan(
                               text: "Portofolio",
                               style: TextStyle(fontWeight: FontWeight.bold)),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:investops/assets/constants.dart';
+import 'package:investops/main.dart';
 import 'package:investops/page/login.dart';
 import 'package:investops/page/mainpage.dart';
-import 'package:investops/page/registration/company_registration.dart';
 import 'package:investops/page/stock/mywatchlist.dart';
 import 'package:investops/page/crypto/crypto_watchlist.dart';
-import 'package:investops/page/suggestion_box_page.dart';
+import 'package:investops/page/suggestionBoxPage.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
@@ -50,11 +50,11 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
               minLeadingWidth: 10,
               leading: const Icon(
                 Icons.login_rounded,
-                color: Color.fromARGB(255, 150, 252, 3),
+                color: const Color.fromARGB(255, 150, 252, 3),
               ),
               title: const Text(
                 'Login',
-                style: TextStyle(color: Color.fromARGB(255, 150, 252, 3)),
+                style: TextStyle(color: const Color.fromARGB(255, 150, 252, 3)),
               ),
               onTap: () {
                 Navigator.pushReplacement(
@@ -103,8 +103,7 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const MyCryptoWatchList()),
+                MaterialPageRoute(builder: (context) => const MyCryptoWatchList()),
               );
             },
           ),
@@ -119,8 +118,7 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => const CompanyRegistrationPage()),
+                MaterialPageRoute(builder: (context) => const MyMainPage()),
               );
             },
           ),
@@ -185,15 +183,13 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
               ),
               onTap: () async {
                 if (request.loggedIn) {
-                  
-                      await request.logout("$siteUrl/authenticate/logout/").then((value){
+                  final response =
+                      await request.logout("$siteUrl/authenticate/logout/");
                   nama = '';
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => const LoginPage()),
                   );
-
-                      });
                 }
               },
             ),

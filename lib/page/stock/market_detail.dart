@@ -1,5 +1,3 @@
-// ignore_for_file: unnecessary_brace_in_string_interps
-
 import 'package:investops/assets/constants.dart';
 import 'package:investops/page/login.dart';
 import 'package:investops/page/stock/mywatchlist.dart';
@@ -8,11 +6,11 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
 class MarketDetail extends StatelessWidget {
-  final String kodeSaham;
-  final String namaPerusahaan;
-  final int hargaSaham;
-  final String risk;
-  final int pk;
+  final kodeSaham;
+  final namaPerusahaan;
+  final hargaSaham;
+  final risk;
+  final pk;
 
   const MarketDetail({
     Key? key,
@@ -56,7 +54,7 @@ class MarketDetail extends StatelessWidget {
                         leading: CircleAvatar(
                           backgroundColor: Colors.white,
                           backgroundImage: NetworkImage(
-                              "https://www.idx.co.id/Portals/0/StaticData/ListedCompanies/LogoEmiten/$kodeSaham.jpg"),
+                              "https://www.idx.co.id/Portals/0/StaticData/ListedCompanies/LogoEmiten/${kodeSaham}.jpg"),
                         ),
                         title: Text(
                           kodeSaham,
@@ -104,7 +102,7 @@ class MarketDetail extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            '$hargaSaham',
+                                            '${hargaSaham}',
                                             style: const TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 14),
@@ -156,13 +154,13 @@ class MarketDetail extends StatelessWidget {
                                             ),
                                           ),
                                           (risk == 'LOW')
-                                              ? Text(risk,
+                                              ? Text('${risk}',
                                                   style: const TextStyle(
                                                       color: Color.fromARGB(
                                                           255, 150, 252, 3),
                                                       fontSize: 14))
                                               : Text(
-                                                  risk,
+                                                  '${risk}',
                                                   style: const TextStyle(
                                                       color: Colors.red,
                                                       fontSize: 14),
@@ -226,7 +224,7 @@ class MarketDetail extends StatelessWidget {
                             builder: (context) => const LoginPage()),
                       );
                     } else {
-                      await request
+                      final response = await request
                           .post("${siteUrl}/stock/delete_market/${pk}", {});
                       showDialog(
                           context: context,
@@ -238,36 +236,38 @@ class MarketDetail extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               elevation: 10,
-                              child: ListView(
-                                  padding: const EdgeInsets.only(
-                                      top: 20, bottom: 20),
-                                  shrinkWrap: true,
-                                  children: <Widget>[
-                                    const Center(
-                                        child: Text(
-                                      'Pembelian Berhasil',
-                                      style: TextStyle(
-                                          fontSize: 15, color: Colors.white),
-                                    )),
-                                    const SizedBox(height: 20),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const MyWatchList()),
-                                        );
-                                      },
-                                      child: const Text(
-                                        'Kembali ke Watchlist',
+                              child: Container(
+                                child: ListView(
+                                    padding: const EdgeInsets.only(
+                                        top: 20, bottom: 20),
+                                    shrinkWrap: true,
+                                    children: <Widget>[
+                                      const Center(
+                                          child: Text(
+                                        'Pembelian Berhasil',
                                         style: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 150, 252, 3),
-                                            fontSize: 12),
-                                      ),
-                                    )
-                                  ]),
+                                            fontSize: 15, color: Colors.white),
+                                      )),
+                                      const SizedBox(height: 20),
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    const MyWatchList()),
+                                          );
+                                        },
+                                        child: const Text(
+                                          'Kembali ke Watchlist',
+                                          style: TextStyle(
+                                              color: Color.fromARGB(
+                                                  255, 150, 252, 3),
+                                              fontSize: 12),
+                                        ),
+                                      )
+                                    ]),
+                              ),
                             );
                           });
                     }

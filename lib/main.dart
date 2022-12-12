@@ -1,4 +1,6 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:investops/page/drawer.dart';
 import 'package:investops/page/login.dart';
 import 'package:investops/page/register.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +65,7 @@ class MyApp extends StatelessWidget {
               // brightness: Brightness.light,
               // primaryColor: Color(0xff5D4524),
               primarySwatch: Colors.lime,
-              iconTheme: const IconThemeData(color: Colors.white)),
+              iconTheme: IconThemeData(color: Colors.white)),
           home: const MyHomePage(),
         ));
   }

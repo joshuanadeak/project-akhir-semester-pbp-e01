@@ -1,4 +1,4 @@
-import 'package:investops/model/suggestion_box.dart';
+import 'package:investops/model/suggestionBox.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
