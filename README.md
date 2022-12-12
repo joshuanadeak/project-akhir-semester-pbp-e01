@@ -1,12 +1,18 @@
 # Proyek Akhir Semester Kelompok E01
 
-![deskripsi](https://github.com/joshuanadeak/project-tengah-semester-pbp-e01/actions/workflows/dpl.yml/badge.svg)
+[![Build status](https://build.appcenter.ms/v0.1/apps/4b96352a-9823-4744-827d-2e3d72152038/branches/main/badge)](https://appcenter.ms)
+
+[![Release](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/release.yml)
+
+[![Prerelease](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/pre-release.yml/badge.svg?)](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/pre-release.yml)
+
+[![Pipeline Status Branch](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/staging.yml/badge.svg?branch=staging)](https://github.com/joshuanadeak/project-akhir-semester-pbp-e01/actions/workflows/staging.yml)
 
 ## Topic : Trade and Investment
 
 ## Investops
 
-## Our Group's Members (E01)
+## 📌 Our Group's Members (E01) 📌
 1. Christopher Nathanael Wijaya
 2. Joshua Mihai Daniel Nadeak
 3. Joan Isva Shanti Andrea
@@ -14,11 +20,20 @@
 5. Alisya Andiny Alhabsyi
 6. Ridho Mulia
 
-## Backstory of The Application
-Modern economy is one of the most complex structure in human civilization, that have been formed from the early days of the humans until the era of digital technology. It puts everybody, you and me included, in it's structure of supply and demand. And because of this, the will of people to "bond" with it, by investing for instance, have been higher than ever. That's why we need a system that can provide reliable and accurate information about trading and investment. our target is that trading and investment can be accessed by everyone, from corporates to even a person that has never heard about it. That's why we created this app, that can provide all the main needs for trading and investment. This includes, learning about investing in stocks and crypto, understanding about companies and corporate, trivia to understand investing, and also a suggestion box for any new ideas. 
+## ✨ Link APK ✨
+Aplikasi ini dapat didapat melalui [link berikut](https://install.appcenter.ms/orgs/project-akhir-semester-pbp-e01/apps/investops/distribution_groups/public).
 
-## Modules To Be Implemented
-### 1. Main Page (Flutter Module: `authenticate`) - Main Page by Christopher, Login and Register by Joshua, and Logout by Azka
+## 📜 Backstory of The Application 📜
+### Story
+Modern economy is one of the most complex structure in human civilization, that have been formed from the early days of the humans until the era of digital technology. It puts everybody, you and me included, in it's structure of supply and demand. And because of this, the will of people to "bond" with it, by investing for instance, have been higher than ever. That's why we need a system that can provide reliable and accurate information about trading and investment. our target is that trading and investment can be accessed by everyone, from corporates to even a person that has never heard about it. That's why we created this app, that can provide all the main needs for trading and investment. This includes, learning about investing in stocks and crypto, understanding about companies and corporate, trivia to understand investing, and also a suggestion box for any new ideas.
+
+### Impact
+1. Educating people on how to understand investing and it's application;
+2. Giving people investing experiences, so that they can have a hands on knowledge;
+3. Connecting people with others in the trading community, to interact and enlight.
+
+## 📝 Modules To Be Implemented 📝
+### 1. Main Page (Flutter Module: `authenticate`) - Main and Home Page by Joshua, Login and Register by Christopher, and Logout by Azka
 This module is the main page, which will include all the necessary requirement to do register, login, and other interesting stuff in the main web.
 
 ### 2. Investing in Crypto (Flutter Module: `crypto`) - Joshua Mihai Daniel Nadeak (2106635285)
@@ -52,5 +67,20 @@ This app explains itself in it's name, it's a suggestion box where users can giv
 1. Admin : An admin can reply to the feedback given by the user and also delete it. This reply will then be displayed in cards along with the feedback in question.
 2. User : A user can submit a form containing their feedback to this app, this feedback will then be displayed in cards. If it is not replied by the admin yet, the response field will be empty.
 
-## Alur Pengintegrasian dengan Web Service Proyek Tengah Semester
-Melakukannya dengan FutureBuilder yang berperan sebagai widget yang dapat membangun dirinya sendiri sesuai dengan status pada future sebagai wujud komputasi asinkronus. Nanitnya akan ditaruh `var url` herokuapp project tengah semester dan dilakukan http.get (tentunya dengan diambil dulu modulnya). Lalu akan disesuaikan dengan model yang terkait.
+## 👥 Backstory of The Application 👥
+🔒 User yang Belum Login 🔒
+Dapat mengakses ke semua modul, hanya saja tidak bisa melakukan transaksi pembelian dan penjualan pada stock dan crypto, lalu quiz juga tidak bisa lakukan.
+🔓 User yang Sudah Login 🔓
+Memiliki semua access terhadap fitur yang belum login seperti seperti discussion forum, membagikan postingan, serta berkomentar dan bereaksi terhadap postingan user lainnya.
+👑 Super User 👑
+Memiliki access ke berbagai fitur serta privilege dalam hal membuat, membaca, memperbarui, serta menghapus riwayat user maupun konten yang tersedia
+
+## 🔧 Alur Pengintegrasian dengan Web Service Proyek Tengah Semester 🔧
+Secara konsep, ini dapat dilakukan dengan FutureBuilder yang berperan sebagai widget yang dapat membangun dirinya sendiri sesuai dengan status pada future sebagai wujud komputasi asinkronus. Nantinya akan ditaruh `var url` herokuapp project tengah semester dan dilakukan http.get (tentunya dengan diambil dulu modulnya). Lalu akan disesuaikan dengan model yang terkait. Karena konsep aplikasi Investops Mobile serupa dengan versi web-nya, maka kami akan memanfaatkan _endpoint_ yang kami sudah buat pada PTS sebelumnya untuk membawa fitur-fitur pada Investops Web kepada versi _mobile_-nya. Pada dasarnya, aplikasi mobile kami akan mengakses _endpoint_ pada Django, di mana _endpoint_ yang sudah dibuat akan mengembalikan _response_ JSON, sehingga memudahkan pengolahan data di Flutter.
+Secara tahapan, ini dapat dilakukan dengan langkah sebagai berikut:
+1. Menambahkan dependency http ke dalam aplikasi Investops Mobile.
+2. Membuat model di source code aplikasi Investops Mobile yang akan berguna untuk proses parsing response JSON.
+3. Membuat berbagai request kepada endpoint PTS untuk mengakses dan menambah data, sehingga fitur-fitur pada versi web juga dapat diakses di versi mobile Investops.
+4. Memanfaatkan widget FutureBuilder untuk menampilkan response GET request dari aplikasi Investops Mobile.
+
+
