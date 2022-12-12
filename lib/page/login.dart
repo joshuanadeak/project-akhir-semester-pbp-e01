@@ -1,5 +1,4 @@
 import 'package:investops/assets/constants.dart';
-import 'package:investops/main.dart';
 import 'package:investops/page/mainpage.dart';
 import 'package:investops/page/register.dart';
 import 'package:flutter/material.dart';
@@ -151,31 +150,29 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    final response =
-                        await request.login("${siteUrl}/authenticate/login/", {
+                    
+                        await request.login("$siteUrl/authenticate/login/", {
                       'username': _username,
                       'password': _password,
-                    });
-                    if (request.loggedIn) {
-                      nama = response["username"];
-                      print(nama);
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MyMainPage()),
-                      );
-                    } else {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return Dialog(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 21, 21, 21),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              elevation: 10,
-                              child: Container(
+                    }).then((value){
+                      if (request.loggedIn) {
+                        nama = value["username"];
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const MyMainPage()),
+                        );
+                      } else {
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Dialog(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 21, 21, 21),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                elevation: 10,
                                 child: ListView(
                                     padding: const EdgeInsets.only(
                                         top: 20, bottom: 20),
@@ -185,7 +182,8 @@ class _LoginPageState extends State<LoginPage> {
                                           child: Text(
                                         'Username atau Password tidak valid',
                                         style: TextStyle(
-                                            fontSize: 15, color: Colors.white),
+                                            fontSize: 15,
+                                            color: Colors.white),
                                       )),
                                       const SizedBox(height: 20),
                                       TextButton(
@@ -201,10 +199,11 @@ class _LoginPageState extends State<LoginPage> {
                                         ),
                                       )
                                     ]),
-                              ),
-                            );
-                          });
-                    }
+                              );
+                            });
+                      }
+                    });
+                    
                   }
                 },
                 child: const Text(

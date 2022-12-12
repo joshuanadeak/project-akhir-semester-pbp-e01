@@ -173,13 +173,14 @@ class _MyFormPageState extends State<MyFormPage> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    final response =
-                        await request.post("${siteUrl}/stock/add/", {
+                    
+                        await request.post("$siteUrl/stock/add/", {
                       'kode_saham': kodeSaham,
                       'nama_perusahaan': namaPerusahaan,
                       'harga_saham': '$hargaSaham',
                       'risk': risk,
-                    });
+                    }).then((value){
+
                     _formKey.currentState!.reset();
 
                     Navigator.pushReplacement(
@@ -187,6 +188,7 @@ class _MyFormPageState extends State<MyFormPage> {
                       MaterialPageRoute(
                           builder: (context) => const MyWatchList()),
                     );
+                    });
                   }
                 },
                 child: const Text(

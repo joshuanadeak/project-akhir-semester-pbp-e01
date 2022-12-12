@@ -21,7 +21,7 @@ class MyElevatedButton extends StatelessWidget {
     return ElevatedButton(
       
       style: ElevatedButton.styleFrom(
-        fixedSize: (size != null) ? size : Size(340, 50),
+        fixedSize: (size != null) ? size : const Size(340, 50),
         backgroundColor: backgroundColor,
         foregroundColor: foregroundColor,
         textStyle: const TextStyle(

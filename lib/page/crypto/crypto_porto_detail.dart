@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'package:investops/assets/constants.dart';
 import 'package:investops/page/crypto/crypto_porto.dart';
 import 'package:flutter/material.dart';
@@ -5,11 +7,11 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
 class CryptoPortoDetail extends StatelessWidget {
-  final kodeCrypto;
-  final namaCrypto;
-  final hargaCrypto;
-  final risk;
-  final pk;
+  final String kodeCrypto;
+  final String namaCrypto;
+  final int hargaCrypto;
+  final String risk;
+  final int pk;
 
   const CryptoPortoDetail({
     Key? key,
@@ -101,7 +103,7 @@ class CryptoPortoDetail extends StatelessWidget {
                                             ),
                                           ),
                                           Text(
-                                            '${hargaCrypto}',
+                                            '$hargaCrypto',
                                             style: const TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 14),
@@ -153,12 +155,12 @@ class CryptoPortoDetail extends StatelessWidget {
                                             ),
                                           ),
                                           (risk == 'LOW')
-                                              ? Text('${risk}',
+                                              ? Text(risk,
                                                   style: const TextStyle(
                                                       color: Color.fromARGB(
                                                           255, 150, 252, 3),
                                                       fontSize: 14))
-                                              : Text('${risk}',
+                                              : Text(risk,
                                                   style: const TextStyle(
                                                       color: Colors.red,
                                                       fontSize: 14),
@@ -213,7 +215,7 @@ class CryptoPortoDetail extends StatelessWidget {
                     foregroundColor: Colors.black,
                   ),
                   onPressed: () async {
-                    final response = await request
+                    await request
                         .post("${siteUrl}/crypto/delete_crypto/${pk}", {});
                     showDialog(
                         context: context,
@@ -225,38 +227,36 @@ class CryptoPortoDetail extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             elevation: 10,
-                            child: Container(
-                              child: ListView(
-                                  padding: const EdgeInsets.only(
-                                      top: 20, bottom: 20),
-                                  shrinkWrap: true,
-                                  children: <Widget>[
-                                    const Center(
-                                        child: Text(
-                                      'Penjualan Berhasil',
+                            child: ListView(
+                                padding: const EdgeInsets.only(
+                                    top: 20, bottom: 20),
+                                shrinkWrap: true,
+                                children: <Widget>[
+                                  const Center(
+                                      child: Text(
+                                    'Penjualan Berhasil',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white),
+                                  )),
+                                  const SizedBox(height: 20),
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const CryptoPorto()),
+                                      );
+                                    },
+                                    child: const Text(
+                                      'Kembali ke Portofolio',
                                       style: TextStyle(
-                                          fontSize: 15, color: Colors.white),
-                                    )),
-                                    const SizedBox(height: 20),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const CryptoPorto()),
-                                        );
-                                      },
-                                      child: const Text(
-                                        'Kembali ke Portofolio',
-                                        style: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 150, 252, 3),
-                                            fontSize: 12),
-                                      ),
-                                    )
-                                  ]),
-                            ),
+                                          color: Color.fromARGB(
+                                              255, 150, 252, 3),
+                                          fontSize: 12),
+                                    ),
+                                  )
+                                ]),
                           );
                         });
                   },
