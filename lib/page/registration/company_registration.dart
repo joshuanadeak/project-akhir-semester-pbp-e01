@@ -125,21 +125,8 @@ class _CompanyRegistrationPageState extends State<CompanyRegistrationPage> {
                         await request.post("$siteUrl/registration", {
                       'name': nameVal,
                       'price_of_stock': '$stockPriceVal',
-<<<<<<< HEAD
                     });
                     _formKey.currentState!.reset();
-=======
-                    }).then((value){
-                      _formKey.currentState!.reset();
-
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MyMainPage()),
-                      );
-                    });
-                    
->>>>>>> bd8b2e568730eeb050afed04309a3bb535b10c57
                   }
                 },
                 child: const Text(
