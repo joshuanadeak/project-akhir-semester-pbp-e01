@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:investops/page/login.dart';
 import 'package:investops/page/quiz/quiz.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 import '../drawer.dart';
 
@@ -13,6 +16,7 @@ class WelcomeQuizPage extends StatefulWidget {
 class _WelcomeQuizPageState extends State<WelcomeQuizPage> {
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Welcome Quiz'),
@@ -48,11 +52,19 @@ class _WelcomeQuizPageState extends State<WelcomeQuizPage> {
                 ),
                 child: const Text('Start Quiz'),
                 onPressed: () {
+                   if (!request.loggedIn) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()),
+                          );
+                        }
+                        else{
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                         builder: (context) => const QuizFormPage()),
-                  );
+                  );}
                 }, // on pressed leads to quiz.
               ),
             ]),

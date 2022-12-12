@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:investops/main.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:investops/page/mainpage.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
 
 class ElearningPage extends StatefulWidget {
   const ElearningPage({Key? key}) : super(key: key);
