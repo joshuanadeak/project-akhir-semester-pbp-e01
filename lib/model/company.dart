@@ -1,14 +1,11 @@
 class Company {
-  Company({
-    required this.name,
-    required this.stockPrice,
-  });
+  Company({required this.nama, required this.stockPrice});
 
-  String name;
+  String nama;
   int stockPrice;
 
   factory Company.fromJson(Map<String, dynamic> json) => Company(
-        name: json["fields"]["name"],
+        nama: json["fields"]["name"],
         stockPrice: json["fields"]["price_of_stock"],
       );
 }
