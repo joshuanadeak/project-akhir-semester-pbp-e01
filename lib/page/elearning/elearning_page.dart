@@ -69,7 +69,7 @@ class _ElearningPage extends State<ElearningPage> {
             ),
             Container(
               padding: const EdgeInsets.all(20),
-              height: 150,
+              height: 200,
               width: double.infinity,
               color: const Color.fromARGB(255, 249, 250, 246),
               child: Column(
@@ -104,7 +104,7 @@ class _ElearningPage extends State<ElearningPage> {
             ),
             Container(
               padding: const EdgeInsets.all(20),
-              height: 150,
+              height: 200,
               width: double.infinity,
               color: const Color.fromARGB(255, 249, 250, 246),
               child: Column(
