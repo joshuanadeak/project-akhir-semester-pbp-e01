@@ -18,7 +18,9 @@ class _WelcomeQuizPageState extends State<WelcomeQuizPage> {
         title: const Text('Welcome Quiz'),
       ),
       drawer: const UniversalDrawer(),
-      body: Center(
+      body: Padding (
+        padding: const EdgeInsets.only(left: 20.0),
+        child :Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,19 +34,17 @@ class _WelcomeQuizPageState extends State<WelcomeQuizPage> {
                   style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Alexandria',
-                      fontWeight: FontWeight.bold,
                       fontSize: 18)),
               const Text(
                   "It only takes a few minutes to train your knowledge and skill about stock and trading.",
                   style: TextStyle(
                       color: Colors.white,
-                      fontFamily: 'Alexandria',
-                      fontWeight: FontWeight.bold)),
+                      fontFamily: 'Alexandria',)),
               TextButton(
                 style: TextButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 74, 229, 154),
                   padding: const EdgeInsets.all(16.0),
-                  textStyle: const TextStyle(fontSize: 20, color: Colors.white),
+                  textStyle: const TextStyle(fontSize: 20, color: Colors.black),
                 ),
                 child: const Text('Start Quiz'),
                 onPressed: () {
@@ -56,7 +56,8 @@ class _WelcomeQuizPageState extends State<WelcomeQuizPage> {
                 }, // on pressed leads to quiz.
               ),
             ]),
-      ),
+      )
+      )
     );
   }
 }
