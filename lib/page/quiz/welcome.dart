@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:investops/page/quiz/quiz.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:provider/provider.dart';
-import 'package:investops/page/quiz/quiz.dart';
+
+import '../drawer.dart';
 
 class WelcomeQuizPage extends StatefulWidget {
   const WelcomeQuizPage({Key? key}) : super(key: key);
@@ -16,33 +15,34 @@ class _WelcomeQuizPageState extends State<WelcomeQuizPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quiz'),
+        title: const Text('Quiz'),
       ),
+      drawer: const UniversalDrawer(),
       body: Center(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Stock and Trading Quiz",
-                  style: const TextStyle(
-                      color: Colors.black,
+              const Text("Stock and Trading Quiz",
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 150, 252, 3),
                       fontFamily: 'Alexandria',
                       fontSize: 32)),
-              Text("By Investops",
-                  style: const TextStyle(
-                      color: Colors.black,
+              const Text("By Investops",
+                  style: TextStyle(
+                      color: Colors.white,
                       fontFamily: 'Alexandria',
                       fontWeight: FontWeight.bold,
                       fontSize: 18)),
-              Text(
+              const Text(
                   "It only takes a few minutes to train your knowledge and skill about stock and trading.",
-                  style: const TextStyle(
-                      color: Colors.black,
+                  style: TextStyle(
+                      color: Colors.white,
                       fontFamily: 'Alexandria',
                       fontWeight: FontWeight.bold)),
               TextButton(
                 style: TextButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 74, 229, 154),
+                  backgroundColor: const Color.fromARGB(255, 74, 229, 154),
                   padding: const EdgeInsets.all(16.0),
                   textStyle: const TextStyle(fontSize: 20, color: Colors.white),
                 ),

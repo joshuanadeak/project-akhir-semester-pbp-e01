@@ -155,6 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                       'username': _username,
                       'password': _password,
                     }).then((value){
+                 
                       if (request.loggedIn) {
                         nama = value["username"];
                         Navigator.pushReplacement(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:investops/assets/constants.dart';
 import 'package:investops/page/login.dart';
 import 'package:investops/page/mainpage.dart';
+import 'package:investops/page/quiz/welcome.dart';
 import 'package:investops/page/registration/company_registration.dart';
 import 'package:investops/page/stock/mywatchlist.dart';
 import 'package:investops/page/crypto/crypto_watchlist.dart';
@@ -148,7 +149,7 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyMainPage()),
+                MaterialPageRoute(builder: (context) => const WelcomeQuizPage()),
               );
             },
           ),

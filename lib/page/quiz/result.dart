@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:investops/main.dart';
+import 'package:investops/page/login.dart';
+import 'package:investops/page/mainpage.dart';
+
+import '../drawer.dart';
 
 class ResultPage extends StatefulWidget {
   const ResultPage({Key? key}) : super(key: key);
@@ -13,35 +16,36 @@ class _ResultPageState extends State<ResultPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Result Quiz'),
+        title: const Text('Result Quiz'),
       ),
+      drawer: const UniversalDrawer(),
       body: Center(
         child:
           Column(
             children: [
-              Spacer(flex: 2),
-              Text(
+              const Spacer(flex: 2),
+              const Text(
                 "Thank you for taking the quiz, ", //tambahin nama
-                style:const TextStyle(color: Colors.black,
+                style:TextStyle(color: Colors.white,
                       fontFamily: 'Alexandria',
                       fontSize: 18),
               ),
-              Spacer(),
+              const Spacer(),
               Text(
-                "Result, ", //tambahin nama
-                style:const TextStyle(color: Colors.black,
+                "Result, $nama", //tambahin nama
+                style:const TextStyle(color: Colors.white,
                       fontFamily: 'Alexandria',
                       fontSize: 24),
               ),
-              Text(
+              const Text(
                 " ", //tambahin score
-                style:const TextStyle(color: Colors.black,
+                style:TextStyle(color: Colors.white,
                       fontFamily: 'Alexandria',
                       fontSize: 32),
               ),
               TextButton(
                 style: TextButton.styleFrom(
-                  backgroundColor: Color.fromARGB(255, 74, 229, 154),
+                  backgroundColor: const Color.fromARGB(255, 74, 229, 154),
                   padding: const EdgeInsets.all(16.0),
                   textStyle: const TextStyle(fontSize: 20, color: Colors.white),
                 ),
@@ -50,7 +54,7 @@ class _ResultPageState extends State<ResultPage> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const MyApp()),
+                        builder: (context) => const MyMainPage()),
                   );
                 }, // on pressed leads to quiz.
               ),
