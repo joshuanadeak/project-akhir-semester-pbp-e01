@@ -149,7 +149,8 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const WelcomeQuizPage()),
+                MaterialPageRoute(
+                    builder: (context) => const WelcomeQuizPage()),
               );
             },
           ),
@@ -186,15 +187,16 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
               ),
               onTap: () async {
                 if (request.loggedIn) {
-                  
-                      await request.logout("$siteUrl/authenticate/logout/").then((value){
-                  nama = '';
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
-                  );
-
-                      });
+                  await request
+                      .logout("$siteUrl/authenticate/logout/")
+                      .then((value) {
+                    nama = '';
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()),
+                    );
+                  });
                 }
               },
             ),
