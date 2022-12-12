@@ -1,5 +1,4 @@
 import 'package:investops/assets/constants.dart';
-import 'package:investops/model/crypto_market.dart';
 import 'package:investops/page/crypto/crypto_form.dart';
 import 'package:investops/page/login.dart';
 import 'package:investops/page/crypto/crypto_market_detail.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:investops/model/crypto_market.dart';
 
 class MyCryptoWatchList extends StatefulWidget {
   const MyCryptoWatchList({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class MyCryptoWatchlist extends State<MyCryptoWatchList> {
     final request = context.watch<CookieRequest>();
 
     Future<List<CryptoMarket>> getCryptoMarket() async {
-      var url = '${siteUrl}/crypto/mjson/';
+      var url = '$siteUrl/crypto/mjson/';
       var response = await request.get(url);
       List<CryptoMarket> listCryptoMarket = [];
       for (var i in response) {

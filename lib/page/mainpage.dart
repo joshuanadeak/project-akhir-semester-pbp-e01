@@ -1,99 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
-import 'package:provider/provider.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:countup/countup.dart';
+
+
 
 class MyMainPage extends StatefulWidget {
   const MyMainPage({super.key});
+
+  final String title = 'INVESTOPS.';
 
   @override
   State<MyMainPage> createState() => _MyMainPageState();
 }
 
 class _MyMainPageState extends State<MyMainPage> {
-  @override
-  Widget build(BuildContext context) {
-    return Provider(
-        create: (_) {
-          CookieRequest request = CookieRequest();
-          return request;
-        },
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'INVESTOPS.',
-          theme: ThemeData(
-              inputDecorationTheme: const InputDecorationTheme(
-                  hintStyle: TextStyle(
-                    color: Color.fromARGB(70, 171, 171, 171),
-                    fontFamily: 'Alexandria-Light',
-                    fontSize: 14,
-                  ),
-                  filled: true,
-                  fillColor: Color.fromARGB(255, 21, 21, 21),
-                  suffixIconColor: Color.fromARGB(255, 171, 171, 171),
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(70, 171, 171, 171),
-                          width: 0.2)),
-                  focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color.fromARGB(70, 171, 171, 171),
-                          width: 0.2))),
-              textTheme: const TextTheme(
-                bodyText1: TextStyle(),
-                bodyText2: TextStyle(),
-              ).apply(
-                bodyColor: const Color.fromARGB(255, 150, 252, 3),
-                displayColor: const Color.fromARGB(255, 150, 252, 3),
-              ),
-              fontFamily: 'Alexandria',
-              appBarTheme: const AppBarTheme(
-                iconTheme: IconThemeData(size: 20, color: Colors.white),
-                titleTextStyle: TextStyle(
-                    fontSize: 14,
-                    color: Colors.white,
-                    fontFamily: 'Alexandria'),
-                backgroundColor: Colors.black,
-                foregroundColor: Colors.white,
-                centerTitle: true,
-              ),
-              scaffoldBackgroundColor: Colors.black,
-              // brightness: Brightness.light,
-              // primaryColor: Color(0xff5D4524),
-              primarySwatch: Colors.lime,
-              iconTheme: IconThemeData(color: Colors.white)),
-          home: const MyHomePage(),
-        ));
-  }
-}
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
 
-  final String title = 'INVESTOPS.';
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      if (_counter != 0) {
-        _counter--;
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -102,10 +24,10 @@ class _MyHomePageState extends State<MyHomePage> {
           backgroundColor: Colors.black,
           title: Text(
             widget.title,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-        drawer: UniversalDrawer(),
+        drawer: const UniversalDrawer(),
         body: Center(
         child: DraggableScrollableSheet(
             initialChildSize: 0.85,

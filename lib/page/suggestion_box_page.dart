@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:investops/data/fetchSuggestion.dart';
-import 'package:investops/model/suggestionBox.dart';
+import 'package:investops/data/fetch_suggestion.dart';
+import 'package:investops/model/suggestion_box.dart';
 import 'package:investops/page/drawer.dart';
-import 'package:investops/form/suggestionForm.dart';
-import 'package:investops/form/replyForm.dart';
+import 'package:investops/form/suggestion_form.dart';
+import 'package:investops/form/reply_form.dart';
 import 'package:investops/page/login.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:investops/data/sendAdminCheck.dart';
+import 'package:investops/data/send_admin_check.dart';
 
 class SuggestionBoxPage extends StatefulWidget {
   const SuggestionBoxPage({super.key});
@@ -56,7 +56,7 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
                           fontSize: 7,
                           color: Color.fromARGB(255, 150, 252, 3),
                         ),),
-                      trailing: Text("From user : "+snapshot.data![index].fields.username),
+                      trailing: Text("From user : ${snapshot.data![index].fields.username}"),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                         side: const BorderSide(
@@ -113,8 +113,8 @@ class _SuggestionBoxPageState extends State<SuggestionBoxPage> {
                     MaterialPageRoute(builder: (context) => const SuggestionForm()),);
                 }
               },
-              child: const Icon(Icons.add),
               backgroundColor: const Color.fromARGB(255, 150, 252, 3),
+              child: const Icon(Icons.add),
             ),
           ],
         ),

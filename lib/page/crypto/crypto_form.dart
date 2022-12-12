@@ -31,7 +31,8 @@ class _MyCryptoFormPageState extends State<MyCryptoFormPage> {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyCryptoWatchList()),
+                MaterialPageRoute(
+                    builder: (context) => const MyCryptoWatchList()),
               );
             },
           ),
@@ -173,13 +174,14 @@ class _MyCryptoFormPageState extends State<MyCryptoFormPage> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
-                    final response =
-                        await request.post("${siteUrl}/crypto/add/", {
+                    
+                        await request.post("$siteUrl/crypto/add/", {
                       'kode_crypto': kodeCrypto,
                       'nama_crypto': namaCrypto,
                       'harga_crypto': '$hargaCrypto',
                       'risk': risk,
-                    });
+                    }).then((value) {
+
                     _formKey.currentState!.reset();
 
                     Navigator.pushReplacement(
@@ -187,6 +189,7 @@ class _MyCryptoFormPageState extends State<MyCryptoFormPage> {
                       MaterialPageRoute(
                           builder: (context) => const MyCryptoWatchList()),
                     );
+                    });
                   }
                 },
                 child: const Text(
