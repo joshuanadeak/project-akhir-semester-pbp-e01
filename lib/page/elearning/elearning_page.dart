@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:investops/main.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:investops/page/mainpage.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -14,8 +15,9 @@ class ElearningPage extends StatefulWidget {
 class _ElearningPage extends State<ElearningPage> {
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
+    // final request = context.watch<CookieRequest>();
     return Scaffold(
+      backgroundColor: Colors.white,
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_rounded),
@@ -23,23 +25,25 @@ class _ElearningPage extends State<ElearningPage> {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()),
+                MaterialPageRoute(builder: (context) => const MyMainPage()),
               );
             },
           ),
           title: const Text('Elearning'),
         ),
+        drawer: const UniversalDrawer(),
         body: Column(
           children: [
             Container(
               padding: const EdgeInsets.all(20),
-              height: 150,
+              height: 200,
               width: double.infinity,
-              color: Color.fromARGB(255, 249, 250, 246),
+              color: const Color.fromARGB(255, 249, 250, 246),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   RichText(
+                    maxLines: 5,
                     text: const TextSpan(
                         style: TextStyle(
                             color: Colors.black, fontFamily: 'Alexandria'),
@@ -58,7 +62,7 @@ class _ElearningPage extends State<ElearningPage> {
                         color: Colors.grey),
                     child: TextButton(
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           'Watch the video',
                           style: TextStyle(color: Colors.black),
                         )),
@@ -70,7 +74,7 @@ class _ElearningPage extends State<ElearningPage> {
               padding: const EdgeInsets.all(20),
               height: 150,
               width: double.infinity,
-              color: Color.fromARGB(255, 249, 250, 246),
+              color: const Color.fromARGB(255, 249, 250, 246),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -93,7 +97,7 @@ class _ElearningPage extends State<ElearningPage> {
                         color: Colors.grey),
                     child: TextButton(
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           'Watch the video',
                           style: TextStyle(color: Colors.black),
                         )),
@@ -105,7 +109,7 @@ class _ElearningPage extends State<ElearningPage> {
               padding: const EdgeInsets.all(20),
               height: 150,
               width: double.infinity,
-              color: Color.fromARGB(255, 249, 250, 246),
+              color: const Color.fromARGB(255, 249, 250, 246),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -128,7 +132,7 @@ class _ElearningPage extends State<ElearningPage> {
                         color: Colors.grey),
                     child: TextButton(
                         onPressed: () {},
-                        child: Text(
+                        child: const Text(
                           'Watch the video',
                           style: TextStyle(color: Colors.black),
                         )),
