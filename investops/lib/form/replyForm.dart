@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:flutter/services.dart';
 import 'package:investops/page/suggestionBoxPage.dart';
 import 'package:investops/data/sendReply.dart';
-
+import 'package:investops/data/sendDeleteFeedback.dart';
 
 class ReplyForm extends StatefulWidget {
   const ReplyForm({super.key, required this.id});
@@ -89,6 +90,20 @@ class _ReplyFormState extends State<ReplyForm> {
                             MaterialPageRoute(builder: (context) => const SuggestionBoxPage()));
                       },
                       child: const Text('Back'),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color.fromARGB(255, 150, 252, 3),
+                      )
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        sendDeleteFeedback(widget.id);
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => const SuggestionBoxPage()));
+                      },
+                      child: const Text('Delete'),
                       style: ElevatedButton.styleFrom(
                         primary: Color.fromARGB(255, 150, 252, 3),
                       )
