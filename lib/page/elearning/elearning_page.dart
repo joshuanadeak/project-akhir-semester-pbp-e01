@@ -23,7 +23,7 @@ class _ElearningPage extends State<ElearningPage> {
             onPressed: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyHomePage()),
+                MaterialPageRoute(builder: (context) => const MyMainPage()),
               );
             },
           ),
