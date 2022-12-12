@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:investops/assets/constants.dart';
 import 'package:investops/main.dart';
+import 'package:investops/page/elearning/elearning_page.dart';
 import 'package:investops/page/login.dart';
 import 'package:investops/page/mainpage.dart';
 import 'package:investops/page/stock/mywatchlist.dart';
@@ -103,7 +104,8 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const MyCryptoWatchList()),
+                MaterialPageRoute(
+                    builder: (context) => const MyCryptoWatchList()),
               );
             },
           ),
@@ -130,9 +132,9 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
               style: TextStyle(color: Colors.white),
             ),
             onTap: () {
-              Navigator.pushReplacement(
+              Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const MyMainPage()),
+                MaterialPageRoute(builder: (context) => const ElearningPage()),
               );
             },
           ),
