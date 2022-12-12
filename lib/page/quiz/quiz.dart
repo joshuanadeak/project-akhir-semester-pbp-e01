@@ -1,11 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:investops/assets/constants.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:investops/page/quiz/result.dart';
-
 
 int nilaiKuis = 0;
 
@@ -17,7 +15,6 @@ class QuizFormPage extends StatefulWidget {
 }
 
 class _QuizFormPageState extends State<QuizFormPage> {
-  
   List<String> rightAnswer = [
     "A place where parts of businesses are bought and sold",
     "Share",
@@ -30,18 +27,7 @@ class _QuizFormPageState extends State<QuizFormPage> {
     "Yes",
     "P/E RATIO"
   ];
-  List<String> answerList = [
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    ""
-  ];
+  List<String> answerList = ["", "", "", "", "", "", "", "", "", ""];
   int score = 0;
 
   void countScore(List<dynamic> rightAnswer, List<dynamic> answerList) {
@@ -52,6 +38,7 @@ class _QuizFormPageState extends State<QuizFormPage> {
     }
     nilaiKuis = score;
   }
+
   List<String> option1 = [
     "A type of farmers market where people buy and sell food",
     "A place where parts of businesses are bought and sold",
@@ -121,26 +108,35 @@ class _QuizFormPageState extends State<QuizFormPage> {
   String? answer9;
   String? answer10;
 
-
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         title: const Text('Quiz'),
       ),
-      backgroundColor: const Color.fromARGB(255, 74, 229, 154),
       drawer: const UniversalDrawer(),
       body: SingleChildScrollView(
         child: Center(
             child: Column(
           children: [
+            const Center(
+              child: Text("- QUIZ -",
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 150, 252, 3),
+                      fontFamily: 'Alexandria',
+                      fontSize: 32)),
+            ),
             const ListTile(
-              title: Text("What is the stock market?"),
+              title: Text("1. What is the stock market?",
+                  style:
+                      TextStyle(color: Colors.white, fontFamily: 'Alexandria')),
             ),
             for (var i = 0; i < 4; i++)
               RadioListTile(
-                title: Text(option1[i]),
+                title: Text(option1[i],
+                    style: const TextStyle(
+                        color: Colors.white, fontFamily: 'Alexandria')),
                 value: option1[i],
                 groupValue: answer,
                 onChanged: (var v) {
@@ -150,13 +146,17 @@ class _QuizFormPageState extends State<QuizFormPage> {
                   });
                 },
               ),
+            const Spacer(flex: 1),
             const ListTile(
-              title: Text(
-                  "The name for a part of a business that is bought and sold on the stock market is"),
-            ),
+                title: Text(
+                    "2. The name for a part of a business that is bought and sold on the stock market is",
+                    style: TextStyle(
+                        color: Colors.white, fontFamily: 'Alexandria'))),
             for (var i = 0; i < 4; i++)
               RadioListTile(
-                title: Text(option2[i]),
+                title: Text(option2[i],
+                    style: const TextStyle(
+                        color: Colors.white, fontFamily: 'Alexandria')),
                 value: option2[i],
                 groupValue: answer2,
                 onChanged: (var v) {
@@ -166,12 +166,16 @@ class _QuizFormPageState extends State<QuizFormPage> {
                   });
                 },
               ),
+            const Spacer(flex: 1),
             const ListTile(
-              title: Text("What is a bond?"),
-            ),
+                title: Text("3. What is a bond?",
+                    style: TextStyle(
+                        color: Colors.white, fontFamily: 'Alexandria'))),
             for (var i = 0; i < 4; i++)
               RadioListTile(
-                title: Text(option3[i]),
+                title: Text(option3[i],
+                    style: const TextStyle(
+                        color: Colors.white, fontFamily: 'Alexandria')),
                 value: option3[i],
                 groupValue: answer3,
                 onChanged: (var v) {
@@ -181,104 +185,138 @@ class _QuizFormPageState extends State<QuizFormPage> {
                   });
                 },
               ),
+            const Spacer(flex: 1),
             const ListTile(
-              title: Text("IPO stands for?"),
-            ),
+                title: Text("4. IPO stands for?",
+                    style: TextStyle(
+                        color: Colors.white, fontFamily: 'Alexandria'))),
             for (var i = 0; i < 4; i++)
               RadioListTile(
-                title: Text(option1[i]),
+                title: Text(option1[i],
+                    style: const TextStyle(
+                        color: Colors.white, fontFamily: 'Alexandria')),
                 value: option4[i],
                 groupValue: answer4,
                 onChanged: (var v) {
                   setState(() {
                     answer4 = v;
-                     answerList[3] = (answer4)!;
+                    answerList[3] = (answer4)!;
                   });
                 },
               ),
+            const Spacer(flex: 1),
             const ListTile(
               title: Text(
-                  "A company owned by families or a small number of investors and do not issue stock to the public is called"),
+                  "5. A company owned by families or a small number of investors and do not issue stock to the public is called",
+                  style:
+                      TextStyle(color: Colors.white, fontFamily: 'Alexandria')),
             ),
             for (var i = 0; i < 4; i++)
               RadioListTile(
-                title: Text(option1[i]),
+                title: Text(option1[i],
+                    style: const TextStyle(
+                        color: Colors.white, fontFamily: 'Alexandria')),
                 value: option5[i],
                 groupValue: answer5,
                 onChanged: (var v) {
                   setState(() {
                     answer5 = v;
-                     answerList[4] = (answer5)!;
+                    answerList[4] = (answer5)!;
                   });
                 },
               ),
+            const Spacer(flex: 1),
             const ListTile(
               title: Text(
-                  "A sum of money paid to shareholders of a corporation out of its earnings"),
+                  "6. A sum of money paid to shareholders of a corporation out of its earnings",
+                  style:
+                      TextStyle(color: Colors.white, fontFamily: 'Alexandria')),
             ),
             for (var i = 0; i < 4; i++)
               RadioListTile(
-                title: Text(option6[i]),
+                title: Text(option6[i],
+                    style: const TextStyle(
+                        color: Colors.white, fontFamily: 'Alexandria')),
                 value: option6[i],
                 groupValue: answer6,
                 onChanged: (var v) {
                   setState(() {
                     answer6 = v;
-                     answerList[5] = (answer6)!;
+                    answerList[5] = (answer6)!;
                   });
                 },
               ),
+            const Spacer(flex: 1),
             const ListTile(
-              title: Text("What is a stock market crash?"),
+              title: Text("7. What is a stock market crash?",
+                  style:
+                      TextStyle(color: Colors.white, fontFamily: 'Alexandria')),
             ),
             for (var i = 0; i < 4; i++)
               RadioListTile(
-                title: Text(option7[i]),
+                title: Text(option7[i],
+                    style: const TextStyle(
+                        color: Colors.white, fontFamily: 'Alexandria')),
                 value: option7[i],
                 groupValue: answer7,
                 onChanged: (var v) {
                   setState(() {
                     answer7 = v;
-                     answerList[6] = (answer7)!;
+                    answerList[6] = (answer7)!;
                   });
                 },
               ),
+            const Spacer(flex: 1),
             const ListTile(
-              title: Text("The two major stock exchanges are"),
+              title: Text("8. The two major stock exchanges are",
+                  style:
+                      TextStyle(color: Colors.white, fontFamily: 'Alexandria')),
             ),
             for (var i = 0; i < 4; i++)
               RadioListTile(
-                title: Text(option8[i]),
+                title: Text(option8[i],
+                    style: const TextStyle(
+                        color: Colors.white, fontFamily: 'Alexandria')),
                 value: option8[i],
                 groupValue: answer8,
                 onChanged: (var v) {
                   setState(() {
                     answer8 = v;
-                     answerList[7] = (answer8)!;
+                    answerList[7] = (answer8)!;
                   });
                 },
               ),
+            const Spacer(flex: 1),
             const ListTile(
-              title: Text("Can interest rates affect the stock market?"),
+              title: Text("9. Can interest rates affect the stock market?",
+                  style:
+                      TextStyle(color: Colors.white, fontFamily: 'Alexandria')),
             ),
             for (var i = 0; i < 2; i++)
               RadioListTile(
-                title: Text(option9[i]),
+                title: Text(option9[i],
+                    style: const TextStyle(
+                        color: Colors.white, fontFamily: 'Alexandria')),
                 value: option9[i],
                 groupValue: answer9,
                 onChanged: (var v) {
                   setState(() {
                     answer9 = v;
-                     answerList[8] = (answer9)!;
+                    answerList[8] = (answer9)!;
                   });
                 },
               ),
+            const Spacer(flex: 1),
             const ListTile(
-              title: Text("Which of the following is NOT a stock index?"),
+              title: Text("10. Which of the following is NOT a stock index?",
+                  style:
+                      TextStyle(color: Colors.white, fontFamily: 'Alexandria')),
             ),
             for (var i = 0; i < 4; i++)
               RadioListTile(
-                title: Text(option10[i]),
+                title: Text(option10[i],
+                    style: const TextStyle(
+                        color: Colors.white, fontFamily: 'Alexandria')),
                 value: option10[i],
                 groupValue: answer10,
                 onChanged: (var v) {
@@ -288,26 +326,26 @@ class _QuizFormPageState extends State<QuizFormPage> {
                   });
                 },
               ),
+            const Spacer(flex: 1),
             TextButton(
               style: TextButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 74, 229, 154),
                 padding: const EdgeInsets.all(16.0),
-                textStyle: const TextStyle(fontSize: 20, color: Colors.white),
+                textStyle: const TextStyle(fontSize: 20, color: Colors.black),
               ),
               child: const Text('Submit'),
-               onPressed: () 
-               async {
-                countScore(rightAnswer,answerList);
-                 await request
-                          .post("$siteUrl/quiz/add/", {"score" : score.toString()}).then((value){
-
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ResultPage()),
-                );
-                          });
+              onPressed: () async {
+                countScore(rightAnswer, answerList);
+                await request.post("$siteUrl/quiz/add/",
+                    {"score": score.toString()}).then((value) {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ResultPage()),
+                  );
+                });
               }, // on pressed leads to result
             ),
+            const Spacer(flex: 1)
           ],
         )),
       ),
