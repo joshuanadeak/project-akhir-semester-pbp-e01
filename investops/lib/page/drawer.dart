@@ -185,6 +185,7 @@ class _UniversalDrawerState extends State<UniversalDrawer> {
                 if (request.loggedIn) {
                   final response =
                       await request.logout("$siteUrl/authenticate/logout/");
+                  nama = '';
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => const LoginPage()),
