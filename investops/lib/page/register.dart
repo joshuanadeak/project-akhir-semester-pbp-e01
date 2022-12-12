@@ -48,6 +48,16 @@ class _RegisterPageState extends State<RegisterPage> {
             const SizedBox(
               height: 100,
             ),
+            Container(
+                padding: const EdgeInsets.fromLTRB(15, 0, 15, 5),
+                child: const Text(
+                  'INVESTOPS.',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                )),
             Form(
               key: _formKey,
               child: SingleChildScrollView(

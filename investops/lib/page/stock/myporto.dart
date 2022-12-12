@@ -75,7 +75,7 @@ class Myporto extends State<MyPorto> {
                         style: const TextStyle(
                             color: Colors.black, fontFamily: 'Alexandria'),
                         children: [
-                          TextSpan(text: "${nama} "),
+                          TextSpan(text: "${nama}'s "),
                           const TextSpan(
                               text: "Portofolio",
                               style: TextStyle(fontWeight: FontWeight.bold)),
