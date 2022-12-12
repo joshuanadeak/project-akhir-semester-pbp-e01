@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:investops/page/drawer.dart';
 import 'package:countup/countup.dart';
 
-
-
 class MyMainPage extends StatefulWidget {
   const MyMainPage({super.key});
 
@@ -15,8 +13,6 @@ class MyMainPage extends StatefulWidget {
 
 class _MyMainPageState extends State<MyMainPage> {
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,28 +20,25 @@ class _MyMainPageState extends State<MyMainPage> {
           backgroundColor: Colors.black,
           title: Text(
             widget.title,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              ),
           ),
         ),
         drawer: const UniversalDrawer(),
         body: Center(
-        child: DraggableScrollableSheet(
-            initialChildSize: 0.85,
-            minChildSize: 0.85,
-            maxChildSize: 1,
-            builder: (BuildContext context, ScrollController scrollController) {
-              return Container(
+        child:
+          Container(
                   padding: const EdgeInsets.only(top: 1),
                   decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 250, 250, 250),
+                    color: Colors.black,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(16),
                       topRight: Radius.circular(16),
                     ),
                   ),
-                  child: SingleChildScrollView(
-                    controller: scrollController,
-                    child: Column(
+                  child:
+                   Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         Container(
@@ -54,7 +47,7 @@ class _MyMainPageState extends State<MyMainPage> {
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                               image: const AssetImage(
-                                  'assets/images/WorldHunger.jpg'),
+                                  'assets/images/invest.jpg'),
                               fit: BoxFit.fill,
                               colorFilter: ColorFilter.mode(
                                   const Color.fromARGB(255, 201, 200, 200)
@@ -70,10 +63,13 @@ class _MyMainPageState extends State<MyMainPage> {
                                 child: Column(
                                   children: [
                                     const Text(
-                                        'Based on World Food Programme, there is'),
+                                        'Berdasarkan statisik OJK, terdapat', 
+                                        style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: 'Alexandria')),
                                     Countup(
                                       begin: 0,
-                                      end: 0.8,
+                                      end: 7190000,
                                       duration: const Duration(seconds: 3),
                                       separator: ',',
                                       style: TextStyle(
@@ -83,7 +79,10 @@ class _MyMainPageState extends State<MyMainPage> {
                                       ),
                                     ),
                                     const Text(
-                                        'Number of people that suffered from hunger'),
+                                        'Investor di Indonesia dari seluruh penduduk',
+                                        style: TextStyle(
+                                                color: Colors.white,
+                                                fontFamily: 'Alexandria')),
                                   ],
                                 ),
                               ),
@@ -113,7 +112,7 @@ class _MyMainPageState extends State<MyMainPage> {
                                     width: double.infinity,
                                     height: 120.0,
                                     decoration: BoxDecoration(
-                                        color: Colors.white,
+                                        color: const Color.fromARGB(255, 150, 252, 3),
                                         boxShadow: [
                                           BoxShadow(
                                             color: Colors.grey.withOpacity(0.5),
@@ -128,10 +127,18 @@ class _MyMainPageState extends State<MyMainPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: const [
-                                        Text('The Story Behind INVESTOPS.',
+                                        Text('The Story Behind ',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: 20))
+                                                fontSize: 20,
+                                                color: Colors.black,
+                                                fontFamily: 'Alexandria')),
+                                        Text('INVESTOPS.',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20,
+                                                color: Colors.red,
+                                                fontFamily: 'Alexandria'))
                                       ],
                                     ),
                                   ),
@@ -162,19 +169,19 @@ class _MyMainPageState extends State<MyMainPage> {
                                                                     fit: BoxFit
                                                                         .fill,
                                                                     image: AssetImage(
-                                                                        'assets/images/donatur.png')))),
+                                                                        'assets/images/stock.png')))),
                                                     const SizedBox(width: 5),
                                                     const Text(
-                                                      'Penyalur',
+                                                      'Saham',
                                                       style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w700,
+                                                        fontWeight:FontWeight.w700,
+
                                                       ),
                                                     ),
                                                   ],
                                                 ),
                                                 content: const Text(
-                                                    'Pengguna yang mendaftarkan dirinya sebagai penyalur dapat membuka donasi baru untuk kemudian disalurkan ke orang-orang yang membutuhkan.',
+                                                    'Saham dapat diartikan sebagai tanda penyertaan modal seseorang atau pihak (badan usaha) pada suatu perusahaan atau Perseroan Terbatas.',
                                                     style:
                                                         TextStyle(fontSize: 12),
                                                     textAlign:
@@ -186,7 +193,7 @@ class _MyMainPageState extends State<MyMainPage> {
                                         child: Container(
                                           height: 120.0,
                                           decoration: BoxDecoration(
-                                              color: Colors.white,
+                                              color: const Color.fromARGB(255, 150, 252, 3),
                                               boxShadow: [
                                                 BoxShadow(
                                                   color: Colors.grey
@@ -212,11 +219,12 @@ class _MyMainPageState extends State<MyMainPage> {
                                                           image: DecorationImage(
                                                               fit: BoxFit.fill,
                                                               image: AssetImage(
-                                                                  'assets/images/donatur.png')))),
-                                              const Text('Penyalur',
+                                                                  'assets/images/stock.png')))),
+                                              const Text('Saham',
                                                   style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w700))
+                                                      fontWeight: FontWeight.w700,
+                                                      color: Colors.black,
+                                                      fontFamily: 'Alexandria'))
                                             ],
                                           ),
                                         ),
@@ -246,19 +254,18 @@ class _MyMainPageState extends State<MyMainPage> {
                                                                     fit: BoxFit
                                                                         .fill,
                                                                     image: AssetImage(
-                                                                        'assets/images/donatur.png')))),
+                                                                        'assets/images/crypto.png')))),
                                                     const SizedBox(width: 5),
                                                     const Text(
-                                                      'Donatur',
+                                                      'Kripto',
                                                       style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w700,
+                                                        fontWeight: FontWeight.w700,
                                                       ),
                                                     ),
                                                   ],
                                                 ),
                                                 content: const Text(
-                                                    'Pengguna yang mendaftarkan dirinya sebagai donatur dapat menyumbangkan makanan/uang ke donasi yang dibuka oleh para penyalur.',
+                                                    'Kripto adalah aset digital yang dirancang untuk bekerja sebagai media pertukaran menggunakan kriptografi yang kuat untuk mengamankan transaksi keuangan, mengontrol penciptaan unit tambahan, dan memverifikasi transfer aset.',
                                                     style:
                                                         TextStyle(fontSize: 12),
                                                     textAlign:
@@ -274,7 +281,7 @@ class _MyMainPageState extends State<MyMainPage> {
                                               2,
                                           height: 120.0,
                                           decoration: BoxDecoration(
-                                              color: Colors.white,
+                                              color: const Color.fromARGB(255, 150, 252, 3),
                                               boxShadow: [
                                                 BoxShadow(
                                                   color: Colors.grey
@@ -300,11 +307,12 @@ class _MyMainPageState extends State<MyMainPage> {
                                                           image: DecorationImage(
                                                               fit: BoxFit.fill,
                                                               image: AssetImage(
-                                                                  'assets/images/penyalur.png')))),
-                                              const Text('Donatur',
+                                                                  'assets/images/crypto.png')))),
+                                              const Text('Kripto',
                                                   style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w700))
+                                                      fontWeight: FontWeight.w700,
+                                                      color: Colors.black,
+                                                      fontFamily: 'Alexandria'))
                                             ],
                                           ),
                                         ),
@@ -316,36 +324,9 @@ class _MyMainPageState extends State<MyMainPage> {
                             ],
                           ),
                         ),
-                        ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Colors.yellow[900], // Background color
-                            ),
-                            onPressed: () {
-                              // Navigator.pushReplacement(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             const HarapanPage()));
-                            },
-                            child: const Text('Harapan Demo')),
-                        ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Colors.yellow[900], // Background color
-                            ),
-                            onPressed: () {
-                              // Navigator.pushReplacement(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             const PageOverview()));
-                            },
-                            child: const Text('Page Overview'))
                       ],
                     ),
-                  ));
-            }),
+                  )
       ),
     );
   }
